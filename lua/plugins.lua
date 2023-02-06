@@ -38,7 +38,7 @@ return require('packer').startup(
 		-- 操作效率
 		use 'tpope/vim-surround'
 		use 'junegunn/vim-easy-align'
-		use 'vim-autoformat/vim-autoformat'
+		--use 'vim-autoformat/vim-autoformat'
 		use 'rstacruz/vim-closer'
 
 		-- Load on an autocommand event
@@ -73,6 +73,23 @@ return require('packer').startup(
 		-- Buffer栏
 		use {'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons'}
 
+		-- 快捷键
+		use {
+			"folke/which-key.nvim",
+			config = function()
+				require("which-key").setup {
+				-- your configuration comes here
+				-- or leave it empty to use the default settings
+				-- refer to the configuration section below
+				}
+			end
+		}
+		use({
+			'mrjones2014/legendary.nvim',
+			-- sqlite is only needed if you want to use frecency sorting
+			-- requires = 'kkharji/sqlite.lua'
+		})
+
 		-- 文件树
 		use { 'nvim-tree/nvim-tree.lua', requires = { 'nvim-tree/nvim-web-devicons' } }
 
@@ -95,6 +112,15 @@ return require('packer').startup(
 			end,
 		}
 
+		-- DAP
+		use 'mfussenegger/nvim-dap'
+
+		-- Lint
+		use 'mfussenegger/nvim-lint'
+
+		-- Formatter
+		use 'mhartington/formatter.nvim'
+
 		-- Autocompletion
 		use {'hrsh7th/cmp-nvim-lsp'}
 		use {'hrsh7th/cmp-buffer'}
@@ -108,6 +134,22 @@ return require('packer').startup(
 		}
 
 		-- For golang
+		
+
+		-- mason
+		use {
+			'williamboman/mason.nvim',
+			config = function()
+				require('mason').setup()
+			end
+		}
+		use {
+			'williamboman/mason-lspconfig.nvim',
+			config = function()
+				require('mason-lspconfig').setup()
+			end
+		}
+
 
 		-- For lua
 		use {'saadparwaiz1/cmp_luasnip'}
@@ -132,7 +174,18 @@ return require('packer').startup(
 				-- Snippets
 				{'L3MON4D3/LuaSnip'},             -- Required
 				{'rafamadriz/friendly-snippets'}, -- Optional
-			}
+			},
+			config = function()
+				-- Learn the keybindings, see :help lsp-zero-keybindings
+				-- Learn to configure LSP servers, see :help lsp-zero-api-showcase
+				local lsp = require('lsp-zero')
+				lsp.preset('recommended')
+
+				-- (Optional) Configure lua language server for neovim
+				lsp.nvim_workspace()
+
+				lsp.setup()
+			end
 		}
 
 		-- 主题
