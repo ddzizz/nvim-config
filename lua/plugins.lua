@@ -7,23 +7,23 @@ local packer_exists = pcall(vim.cmd, [[packadd packer.nvim]])
 
 -- Check if packer exists
 if not packer_exists then
-  if vim.fn.input("Download Packer? (y for yes)") ~= "y" then
-    return
-  end
+	if vim.fn.input("Download Packer? (y for yes)") ~= "y" then
+		return
+	end
 
-  local directory = string.format("%s/site/pack/packer/start/", vim.fn.stdpath("data"))
+	local directory = string.format("%s/site/pack/packer/start/", vim.fn.stdpath("data"))
 
-  vim.fn.mkdir(directory, "p")
+	vim.fn.mkdir(directory, "p")
 
 
-  local out = vim.fn.system(
-    string.format("git clone %s %s", "https://github.com/wbthomason/packer.nvim", directory .. "/packer.nvim")
-  )
+	local out = vim.fn.system(
+		string.format("git clone %s %s", "https://github.com/wbthomason/packer.nvim", directory .. "/packer.nvim")
+	)
 
-  print(out)
-  print("Downloading packer.nvim...")
+	print(out)
+	print("Downloading packer.nvim...")
 
-  return
+	return
 end
 
 
@@ -42,7 +42,7 @@ return require('packer').startup(
 		use 'rstacruz/vim-closer'
 
 		-- Load on an autocommand event
-		use {'andymass/vim-matchup', event = 'VimEnter'}
+		use { 'andymass/vim-matchup', event = 'VimEnter' }
 
 		-- 图标
 		use 'nvim-tree/nvim-web-devicons'
@@ -50,28 +50,28 @@ return require('packer').startup(
 		-- 启动屏
 		use {
 			'glepnir/dashboard-nvim',
-			requires = {'nvim-tree/nvim-web-devicons'},
+			requires = { 'nvim-tree/nvim-web-devicons' },
 			event = 'VimEnter',
 			config = function()
 				require('config.dashboard-nvim')
 			end,
 		}
-		--use { 
-		--	'goolord/alpha-nvim', 
+		--use {
+		--	'goolord/alpha-nvim',
 		--	requires = { 'nvim-tree/nvim-web-devicons' },
-			--config = function ()
-				--local alpha = require('alpha')
-				--local startify = require('alpha.themes.dashboard')
-				--alpha.setup(startify.config)
-			--	require('config.alpha-nvim')
-			--end
+		--config = function ()
+		--local alpha = require('alpha')
+		--local startify = require('alpha.themes.dashboard')
+		--alpha.setup(startify.config)
+		--	require('config.alpha-nvim')
+		--end
 		--}
 
 		-- 状态栏
-		use { 
-			'nvim-lualine/lualine.nvim', 
-			requires = { 'kyazdani42/nvim-web-devicons', opt = true } ,
-			config = function ()
+		use {
+			'nvim-lualine/lualine.nvim',
+			requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+			config = function()
 				require('config.lualine')
 			end
 		}
@@ -91,9 +91,9 @@ return require('packer').startup(
 			'folke/which-key.nvim',
 			config = function()
 				require("which-key").setup {
-				-- your configuration comes here
-				-- or leave it empty to use the default settings
-				-- refer to the configuration section below
+					-- your configuration comes here
+					-- or leave it empty to use the default settings
+					-- refer to the configuration section below
 				}
 			end
 		}
@@ -104,17 +104,17 @@ return require('packer').startup(
 		})
 
 		-- 文件树
-		use { 
+		use {
 			'nvim-tree/nvim-tree.lua',
 			requires = { 'nvim-tree/nvim-web-devicons' },
-			config = function ()
+			config = function()
 				require('config.nvim-tree')
 			end
 		}
 
 		-- 文件查找
-		use { 'nvim-lua/plenary.nvim'}
-		use { 'nvim-telescope/telescope.nvim', tag = '0.1.1', requires = { {'nvim-lua/plenary.nvim'} } }
+		use { 'nvim-lua/plenary.nvim' }
+		use { 'nvim-telescope/telescope.nvim', tag = '0.1.1', requires = { { 'nvim-lua/plenary.nvim' } } }
 
 		-- 编码辅助
 		use { 'mg979/vim-visual-multi', branch = 'master' }
@@ -128,7 +128,7 @@ return require('packer').startup(
 			config = function()
 				-- config goes here
 				local wilder = require('wilder')
-				wilder.setup({modes = {':', '/', '?'}})
+				wilder.setup({ modes = { ':', '/', '?' } })
 			end,
 		}
 
@@ -153,17 +153,17 @@ return require('packer').startup(
 		]]
 
 		-- Autocompletion
-		use {'hrsh7th/cmp-nvim-lsp'}
-		use {'hrsh7th/cmp-buffer'}
-		use {'hrsh7th/cmp-path'}
-		use {'hrsh7th/cmp-cmdline'}
+		use { 'hrsh7th/cmp-nvim-lsp' }
+		use { 'hrsh7th/cmp-buffer' }
+		use { 'hrsh7th/cmp-path' }
+		use { 'hrsh7th/cmp-cmdline' }
 		use {
 			'hrsh7th/nvim-cmp',
 			config = function()
 				require('config.nvim-cmp')
 			end,
 		}
-		use 'hrsh7th/cmp-vsnip'    -- { name = 'vsnip' }
+		use 'hrsh7th/cmp-vsnip' -- { name = 'vsnip' }
 		use 'hrsh7th/vim-vsnip'
 		-- 非常强大包含了大部分常用语言的代码段
 		use 'rafamadriz/friendly-snippets'
@@ -185,8 +185,17 @@ return require('packer').startup(
 		-- For golang
 
 		-- 主题
-		use "olimorris/onedarkpro.nvim"
+		use {
+			'navarasu/onedark.nvim',
+			config = function ()
+				--[[
+				require('onedark').setup {
+					style = 'warm'
+				}
+				require('onedark').load()
+				]]
+			end
+		}
+		--use "olimorris/onedarkpro.nvim"
 	end
 )
-
-

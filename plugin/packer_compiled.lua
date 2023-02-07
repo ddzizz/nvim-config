@@ -168,10 +168,11 @@ _G.packer_plugins = {
     path = "C:\\Users\\DingDing\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\nvim-web-devicons",
     url = "https://github.com/nvim-tree/nvim-web-devicons"
   },
-  ["onedarkpro.nvim"] = {
+  ["onedark.nvim"] = {
+    config = { "\27LJ\2\n`\0\0\3\0\5\0\f6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\0016\0\0\0'\2\1\0B\0\2\0029\0\4\0B\0\1\1K\0\1\0\tload\1\0\1\nstyle\twarm\nsetup\fonedark\frequire\0" },
     loaded = true,
-    path = "C:\\Users\\DingDing\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\onedarkpro.nvim",
-    url = "https://github.com/olimorris/onedarkpro.nvim"
+    path = "C:\\Users\\DingDing\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\onedark.nvim",
+    url = "https://github.com/navarasu/onedark.nvim"
   },
   ["packer.nvim"] = {
     loaded = true,
@@ -246,22 +247,18 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: wilder.nvim
-time([[Config for wilder.nvim]], true)
-try_loadstring("\27LJ\2\nS\0\0\5\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\1\2\0005\3\4\0005\4\3\0=\4\5\3B\1\2\1K\0\1\0\nmodes\1\0\0\1\4\0\0\6:\6/\6?\nsetup\vwilder\frequire\0", "config", "wilder.nvim")
-time([[Config for wilder.nvim]], false)
--- Config for: nvim-treesitter
-time([[Config for nvim-treesitter]], true)
-try_loadstring("\27LJ\2\n6\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\27config.nvim-treesitter\frequire\0", "config", "nvim-treesitter")
-time([[Config for nvim-treesitter]], false)
--- Config for: lualine.nvim
-time([[Config for lualine.nvim]], true)
-try_loadstring("\27LJ\2\n.\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\19config.lualine\frequire\0", "config", "lualine.nvim")
-time([[Config for lualine.nvim]], false)
+-- Config for: bufferline.nvim
+time([[Config for bufferline.nvim]], true)
+try_loadstring("\27LJ\2\n1\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\22config.bufferline\frequire\0", "config", "bufferline.nvim")
+time([[Config for bufferline.nvim]], false)
 -- Config for: nvim-tree.lua
 time([[Config for nvim-tree.lua]], true)
 try_loadstring("\27LJ\2\n0\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\21config.nvim-tree\frequire\0", "config", "nvim-tree.lua")
 time([[Config for nvim-tree.lua]], false)
+-- Config for: nvim-treesitter
+time([[Config for nvim-treesitter]], true)
+try_loadstring("\27LJ\2\n6\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\27config.nvim-treesitter\frequire\0", "config", "nvim-treesitter")
+time([[Config for nvim-treesitter]], false)
 -- Config for: which-key.nvim
 time([[Config for which-key.nvim]], true)
 try_loadstring("\27LJ\2\n;\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\14which-key\frequire\0", "config", "which-key.nvim")
@@ -270,10 +267,18 @@ time([[Config for which-key.nvim]], false)
 time([[Config for nvim-cmp]], true)
 try_loadstring("\27LJ\2\n/\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\20config.nvim-cmp\frequire\0", "config", "nvim-cmp")
 time([[Config for nvim-cmp]], false)
--- Config for: bufferline.nvim
-time([[Config for bufferline.nvim]], true)
-try_loadstring("\27LJ\2\n1\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\22config.bufferline\frequire\0", "config", "bufferline.nvim")
-time([[Config for bufferline.nvim]], false)
+-- Config for: wilder.nvim
+time([[Config for wilder.nvim]], true)
+try_loadstring("\27LJ\2\nS\0\0\5\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\1\2\0005\3\4\0005\4\3\0=\4\5\3B\1\2\1K\0\1\0\nmodes\1\0\0\1\4\0\0\6:\6/\6?\nsetup\vwilder\frequire\0", "config", "wilder.nvim")
+time([[Config for wilder.nvim]], false)
+-- Config for: lualine.nvim
+time([[Config for lualine.nvim]], true)
+try_loadstring("\27LJ\2\n.\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\19config.lualine\frequire\0", "config", "lualine.nvim")
+time([[Config for lualine.nvim]], false)
+-- Config for: onedark.nvim
+time([[Config for onedark.nvim]], true)
+try_loadstring("\27LJ\2\n`\0\0\3\0\5\0\f6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\0016\0\0\0'\2\1\0B\0\2\0029\0\4\0B\0\1\1K\0\1\0\tload\1\0\1\nstyle\twarm\nsetup\fonedark\frequire\0", "config", "onedark.nvim")
+time([[Config for onedark.nvim]], false)
 -- Config for: nvim-lspconfig
 time([[Config for nvim-lspconfig]], true)
 try_loadstring("\27LJ\2\n5\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\26config.nvim-lspconfig\frequire\0", "config", "nvim-lspconfig")
@@ -282,7 +287,7 @@ vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
   -- Event lazy-loads
 time([[Defining lazy-load event autocommands]], true)
-vim.cmd [[au VimEnter * ++once lua require("packer.load")({'dashboard-nvim', 'vim-matchup'}, { event = "VimEnter *" }, _G.packer_plugins)]]
+vim.cmd [[au VimEnter * ++once lua require("packer.load")({'vim-matchup', 'dashboard-nvim'}, { event = "VimEnter *" }, _G.packer_plugins)]]
 time([[Defining lazy-load event autocommands]], false)
 vim.cmd("augroup END")
 
