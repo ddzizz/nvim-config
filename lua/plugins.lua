@@ -26,6 +26,12 @@ if not packer_exists then
 	return
 end
 
+vim.cmd [[
+	augroup packer_user_config
+		autocmd!
+		autocmd BufWritePost plugins.lua source <afile> | PackerSync
+	augroup end
+]]
 
 
 return require('packer').startup(
@@ -185,17 +191,17 @@ return require('packer').startup(
 		-- For golang
 
 		-- 主题
+		--[[
 		use {
 			'navarasu/onedark.nvim',
 			config = function ()
-				--[[
 				require('onedark').setup {
 					style = 'warm'
 				}
 				require('onedark').load()
-				]]
 			end
 		}
-		--use "olimorris/onedarkpro.nvim"
+		]]
+		use "olimorris/onedarkpro.nvim"
 	end
 )
