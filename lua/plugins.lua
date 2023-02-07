@@ -68,14 +68,27 @@ return require('packer').startup(
 		--}
 
 		-- 状态栏
-		use { 'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt = true } }
+		use { 
+			'nvim-lualine/lualine.nvim', 
+			requires = { 'kyazdani42/nvim-web-devicons', opt = true } ,
+			config = function ()
+				require('config.lualine')
+			end
+		}
 
 		-- Buffer栏
-		use {'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons'}
+		use {
+			'akinsho/bufferline.nvim',
+			tag = "v3.*",
+			requires = 'nvim-tree/nvim-web-devicons',
+			config = function()
+				require('config.bufferline')
+			end
+		}
 
 		-- 快捷键
 		use {
-			"folke/which-key.nvim",
+			'folke/which-key.nvim',
 			config = function()
 				require("which-key").setup {
 				-- your configuration comes here
@@ -91,7 +104,13 @@ return require('packer').startup(
 		})
 
 		-- 文件树
-		use { 'nvim-tree/nvim-tree.lua', requires = { 'nvim-tree/nvim-web-devicons' } }
+		use { 
+			'nvim-tree/nvim-tree.lua',
+			requires = { 'nvim-tree/nvim-web-devicons' },
+			config = function ()
+				require('config.nvim-tree')
+			end
+		}
 
 		-- 文件查找
 		use { 'nvim-lua/plenary.nvim'}
@@ -103,6 +122,16 @@ return require('packer').startup(
 		use 'liuchengxu/vista.vim'
 		use 'brooth/far.vim'
 
+		--
+		use {
+			'gelguy/wilder.nvim',
+			config = function()
+				-- config goes here
+				local wilder = require('wilder')
+				wilder.setup({modes = {':', '/', '?'}})
+			end,
+		}
+
 		-- 代码补全
 		-- LSP
 		use {
@@ -112,6 +141,7 @@ return require('packer').startup(
 			end,
 		}
 
+		--[[
 		-- DAP
 		use 'mfussenegger/nvim-dap'
 
@@ -120,6 +150,7 @@ return require('packer').startup(
 
 		-- Formatter
 		use 'mhartington/formatter.nvim'
+		]]
 
 		-- Autocompletion
 		use {'hrsh7th/cmp-nvim-lsp'}
@@ -132,61 +163,26 @@ return require('packer').startup(
 				require('config.nvim-cmp')
 			end,
 		}
+		use 'hrsh7th/cmp-vsnip'    -- { name = 'vsnip' }
+		use 'hrsh7th/vim-vsnip'
+		-- 非常强大包含了大部分常用语言的代码段
+		use 'rafamadriz/friendly-snippets'
+		-- 是在代码提示中，显示分类的小图标支持
+		use 'onsails/lspkind-nvim'
+
+		-- Highlight
+		use {
+			'nvim-treesitter/nvim-treesitter',
+			run = function()
+				local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
+				ts_update()
+			end,
+			config = function()
+				require('config.nvim-treesitter')
+			end
+		}
 
 		-- For golang
-		
-
-		-- mason
-		use {
-			'williamboman/mason.nvim',
-			config = function()
-				require('mason').setup()
-			end
-		}
-		use {
-			'williamboman/mason-lspconfig.nvim',
-			config = function()
-				require('mason-lspconfig').setup()
-			end
-		}
-
-
-		-- For lua
-		use {'saadparwaiz1/cmp_luasnip'}
-		use {'hrsh7th/cmp-nvim-lua'}
-		use {
-			'VonHeikemen/lsp-zero.nvim',
-			branch = 'v1.x',
-			requires = {
-				-- LSP Support
-				{'neovim/nvim-lspconfig'},             -- Required
-				{'williamboman/mason.nvim'},           -- Optional
-				{'williamboman/mason-lspconfig.nvim'}, -- Optional
-
-				-- Autocompletion
-				{'hrsh7th/nvim-cmp'},         -- Required
-				{'hrsh7th/cmp-nvim-lsp'},     -- Required
-				{'hrsh7th/cmp-buffer'},       -- Optional
-				{'hrsh7th/cmp-path'},         -- Optional
-				{'saadparwaiz1/cmp_luasnip'}, -- Optional
-				{'hrsh7th/cmp-nvim-lua'},     -- Optional
-
-				-- Snippets
-				{'L3MON4D3/LuaSnip'},             -- Required
-				{'rafamadriz/friendly-snippets'}, -- Optional
-			},
-			config = function()
-				-- Learn the keybindings, see :help lsp-zero-keybindings
-				-- Learn to configure LSP servers, see :help lsp-zero-api-showcase
-				local lsp = require('lsp-zero')
-				lsp.preset('recommended')
-
-				-- (Optional) Configure lua language server for neovim
-				lsp.nvim_workspace()
-
-				lsp.setup()
-			end
-		}
 
 		-- 主题
 		use "olimorris/onedarkpro.nvim"
