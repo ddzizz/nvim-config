@@ -35,7 +35,7 @@ db.setup({
 			{
 				icon = "🗃️  ",
 				desc = "Projects                            ",
-				action = "Telescope projects",
+				action = "Telescope project",
 			},
 			{
 				-- icon = "📎  ",

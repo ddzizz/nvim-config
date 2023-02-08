@@ -41,9 +41,24 @@ local lsp_flags = {
 }
 
 
-local cfgs = { 'lua', 'go' }
+-- Set up lspconfig.
+local nvim_lsp = require('lspconfig')
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+-- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
+--[[
+local servers = { 'pyright', 'gopls', 'tsserver' }
+for _, svr in ipairs(servers) do
+	nvim_lsp[svr].setup {
+		capabilities = capabilities
+	}
+end
+]]
+
+local cfgs = { 'lua', 'go', 'csharp' }
 for _, cfg in ipairs(cfgs) do
 	require('config.lsp.' .. cfg).init({
 		on_attach = on_attach,
+		capabilities = capabilities,
 	})
 end

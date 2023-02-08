@@ -120,13 +120,31 @@ return require('packer').startup(
 
 		-- 文件查找
 		use { 'nvim-lua/plenary.nvim' }
-		use { 'nvim-telescope/telescope.nvim', tag = '0.1.1', requires = { { 'nvim-lua/plenary.nvim' } } }
+		use { 'nvim-telescope/telescope-project.nvim' }
+		use {
+			'nvim-telescope/telescope.nvim',
+			tag = '0.1.1',
+			requires = { { 'nvim-lua/plenary.nvim' } },
+			config = function()
+				require('config.telescope')
+			end
+		}
 
 		-- 编码辅助
 		use { 'mg979/vim-visual-multi', branch = 'master' }
 		use 'mbbill/undotree'
 		use 'liuchengxu/vista.vim'
 		use 'brooth/far.vim'
+
+		-- nvim lua API
+		use {
+			"folke/neodev.nvim",
+			config = function()
+				require("neodev").setup({
+					-- add any options here, or leave empty to use the default settings
+				})
+			end
+		}
 
 		--
 		use {
@@ -147,10 +165,25 @@ return require('packer').startup(
 			end,
 		}
 
-		--[[
 		-- DAP
 		use 'mfussenegger/nvim-dap'
+		use {
+			'leoluz/nvim-dap-go',
+			config = function()
+				require('dap-go').setup()
+			end
+		}
+		use {
+			"rcarriga/nvim-dap-ui",
+			requires = { "mfussenegger/nvim-dap" },
+			config = function()
+				require("neodev").setup({
+					library = { plugins = { "nvim-dap-ui" }, types = true },
+				})
+			end
+		}
 
+		--[[
 		-- Lint
 		use 'mfussenegger/nvim-lint'
 

@@ -83,14 +83,3 @@ cmp.setup.cmdline(':', {
 	})
 })
 
--- Set up lspconfig.
-local nvim_lsp = require('lspconfig')
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
-
--- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
-local servers = { 'pyright', 'gopls', 'tsserver' }
-for _, svr in ipairs(servers) do
-	nvim_lsp[svr].setup {
-		capabilities = capabilities
-	}
-end

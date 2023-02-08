@@ -22,6 +22,8 @@ function mt.init(cfg)
 			},
 			},
 		},
+
+		capabilities = cfg.capabilities,
 		on_attach = cfg.on_attach,
 	}
 end
