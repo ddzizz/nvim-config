@@ -118,6 +118,14 @@ return require('packer').startup(
 			end
 		}
 
+		-- 注释
+		use {
+			'numToStr/Comment.nvim',
+			config = function()
+				require('config.Comment')
+			end
+		}
+
 		-- 文件查找
 		use { 'nvim-lua/plenary.nvim' }
 		use { 'nvim-telescope/telescope-project.nvim' }
