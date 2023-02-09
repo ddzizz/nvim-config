@@ -1,7 +1,12 @@
 local vim = vim
 local noremap_n_slient = { noremap = true, silent = true }
 
-require("nvim-tree").setup()
+require("nvim-tree").setup({
+	view = {
+		width = 40,
+	}
+})
+
 
 vim.api.nvim_set_keymap("n", "<leader>n", ":NvimTreeFocus<CR>", noremap_n_slient)
 vim.api.nvim_set_keymap("n", "<C-t>", ":NvimTreeToggle<CR>", noremap_n_slient)
