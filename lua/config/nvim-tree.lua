@@ -8,9 +8,9 @@ require("nvim-tree").setup({
 })
 
 
-vim.api.nvim_set_keymap("n", "<leader>n", ":NvimTreeFocus<CR>", noremap_n_slient)
+-- vim.api.nvim_set_keymap("n", "<leader>n", ":NvimTreeFocus<CR>", noremap_n_slient)
 vim.api.nvim_set_keymap("n", "<C-t>", ":NvimTreeToggle<CR>", noremap_n_slient)
-vim.api.nvim_set_keymap("n", "<C-f>", ":NvimTreeFind<CR>", noremap_n_slient)
+vim.api.nvim_set_keymap("n", "<C-f>", ":NvimTreeFindFile<CR>", noremap_n_slient)
 
 local function open_nvim_tree(data)
 	-- buffer is a real file on the disk

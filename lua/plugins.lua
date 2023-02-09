@@ -129,6 +129,13 @@ return require('packer').startup(
 		-- 文件查找
 		use { 'nvim-lua/plenary.nvim' }
 		use { 'nvim-telescope/telescope-project.nvim' }
+		use { 
+			'rmagatti/auto-session',
+			config = function ()
+				require('config.auto-session')	
+			end
+		}
+		use { 'rmagatti/session-lens' }
 		use {
 			'nvim-telescope/telescope.nvim',
 			tag = '0.1.1',

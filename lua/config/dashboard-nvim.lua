@@ -42,7 +42,7 @@ db.setup({
 				icon = "☕  ",
 				desc = "Work Space                          ",
 				-- action = "exe 'normal melloworld'",
-				action = "Telescope xray23 list",
+				action = "Telescope session-lens search_session",
 			},
 			{
 				-- icon = "📎  ",
