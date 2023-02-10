@@ -126,16 +126,17 @@ return require('packer').startup(
 			end
 		}
 
-		-- 文件查找
-		use { 'nvim-lua/plenary.nvim' }
-		use { 'nvim-telescope/telescope-project.nvim' }
-		use { 
-			'rmagatti/auto-session',
-			config = function ()
-				require('config.auto-session')	
+		-- Session
+		use { 'Shatur/neovim-session-manager',
+			config = function()
+				require('config.neovim-session-manager')
 			end
 		}
-		use { 'rmagatti/session-lens' }
+
+		-- 文件查找
+		use { 'nvim-lua/plenary.nvim' }
+		use { 'nvim-telescope/telescope-ui-select.nvim' }
+		use { 'nvim-telescope/telescope-project.nvim' }
 		use {
 			'nvim-telescope/telescope.nvim',
 			tag = '0.1.1',
