@@ -2,6 +2,8 @@
 -- ########## load all the plugins #############
 -- #############################################
 
+require('impatient')
+
 local vim = vim
 local packer_exists = pcall(vim.cmd, [[packadd packer.nvim]])
 
@@ -33,19 +35,29 @@ vim.cmd [[
 	augroup end
 ]]
 
-
 return require('packer').startup(
 	function(use)
 		-- Packer can manage itself
 		use 'wbthomason/packer.nvim'
 
-		-- Simple plugins can be specified as strings
+		-- 启动加速
+		use { 'lewis6991/impatient.nvim' }
 
-		-- 操作效率
+		-- vim必备,快速操作包围符号
 		use 'tpope/vim-surround'
+
+		-- 对齐
 		use 'junegunn/vim-easy-align'
 		--use 'vim-autoformat/vim-autoformat'
-		use 'rstacruz/vim-closer'
+
+		-- 自动添加括号
+		--use 'rstacruz/vim-closer'
+		use {
+			"windwp/nvim-autopairs",
+			config = function()
+				require("config.nvim-autopairs")
+			end
+		}
 
 		-- Load on an autocommand event
 		use { 'andymass/vim-matchup', event = 'VimEnter' }
@@ -54,24 +66,21 @@ return require('packer').startup(
 		use 'nvim-tree/nvim-web-devicons'
 
 		-- 启动屏
+		-- use {
+		-- 	'glepnir/dashboard-nvim',
+		-- 	requires = { 'nvim-tree/nvim-web-devicons' },
+		-- 	event = 'VimEnter',
+		-- 	config = function()
+		-- 		require('config.dashboard-nvim')
+		-- 	end,
+		-- }
 		use {
-			'glepnir/dashboard-nvim',
+			'goolord/alpha-nvim',
 			requires = { 'nvim-tree/nvim-web-devicons' },
-			event = 'VimEnter',
 			config = function()
-				require('config.dashboard-nvim')
-			end,
+				require('config.alpha-nvim')
+			end
 		}
-		--use {
-		--	'goolord/alpha-nvim',
-		--	requires = { 'nvim-tree/nvim-web-devicons' },
-		--config = function ()
-		--local alpha = require('alpha')
-		--local startify = require('alpha.themes.dashboard')
-		--alpha.setup(startify.config)
-		--	require('config.alpha-nvim')
-		--end
-		--}
 
 		-- 状态栏
 		use {
@@ -136,7 +145,13 @@ return require('packer').startup(
 		-- 文件查找
 		use { 'nvim-lua/plenary.nvim' }
 		use { 'nvim-telescope/telescope-ui-select.nvim' }
-		use { 'nvim-telescope/telescope-project.nvim' }
+		-- use { 'nvim-telescope/telescope-project.nvim' }
+		use {
+			"ahmedkhalf/project.nvim",
+			config = function()
+				require("config.project")
+			end
+		}
 		use {
 			'nvim-telescope/telescope.nvim',
 			tag = '0.1.1',

@@ -10,7 +10,7 @@ ts.setup({
 	}
 })
 
-ts.load_extension('project')
+ts.load_extension('projects')
 ts.load_extension('ui-select')
 
 local builtin = require('telescope.builtin')
