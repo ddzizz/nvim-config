@@ -2,7 +2,7 @@
 -- ########## load all the plugins #############
 -- #############################################
 
-require('impatient')
+pcall(require, 'impatient')
 
 local vim = vim
 local packer_exists = pcall(vim.cmd, [[packadd packer.nvim]])
@@ -35,7 +35,7 @@ vim.cmd [[
 	augroup end
 ]]
 
-return require('packer').startup(
+return require('packer').startup({
 	function(use)
 		-- Packer can manage itself
 		use 'wbthomason/packer.nvim'
@@ -267,5 +267,11 @@ return require('packer').startup(
 		}
 		]]
 		use "olimorris/onedarkpro.nvim"
-	end
-)
+	end,
+	config = {
+		max_jobs = 8,
+		display = {
+			open_fn = require('packer.util').float,
+		}
+	}
+})

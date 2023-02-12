@@ -3,13 +3,14 @@ local tostring = tostring
 local string = string
 local pcall = pcall
 local vim = vim
+local icons = require('icons')
 local path_ok, plenary_path = pcall(require, "plenary.path")
 local session_utils = require('session_manager.utils')
 local alpha = require("alpha")
 local dashboard = require("alpha.themes.dashboard")
 local has_project, project = pcall(require, "project_nvim")
 local cdir = vim.fn.getcwd()
-local shortcut_keynum = 0 
+local shortcut_keynum = 0
 -- local if_nil = vim.F.if_nil
 
 -- local nvim_web_devicons = {
@@ -90,10 +91,13 @@ local function create_projects(start, target_width)
 				opts = {
 					position = "center",
 					shortcut = shortcut,
-					cursor = target_width,
+					-- 光标位置
+					-- cursor = target_width,
+					cursor = 5,
 					width = target_width,
 					align_shortcut = "right",
 					hl_shortcut = "Keyword",
+					-- 高亮位置
 					hl = { { "Number", 1, 3 } },
 					keymap = {
 						"n",
@@ -132,7 +136,7 @@ local function create_sessions(start, target_width)
 		added = added + 1
 		shortcut_keynum = shortcut_keynum + 1
 		local shortcut = tostring(shortcut_keynum)
-		local display_path = '  ' .. get_shortpath(s.dir.filename, target_width)
+		local display_path = "  " .. get_shortpath(s.dir.filename, target_width)
 		buttons[added] = {
 			type = "button",
 			val = display_path,
@@ -142,10 +146,13 @@ local function create_sessions(start, target_width)
 			opts = {
 				position = "center",
 				shortcut = shortcut,
-				cursor = target_width,
+				-- 光标位置
+				-- cursor = target_width,
+				cursor = 5,
 				width = target_width,
 				align_shortcut = "right",
 				hl_shortcut = "Keyword",
+				-- 高亮位置
 				hl = { { "Number", 1, 3 } },
 				keymap = {
 					"n",
@@ -157,6 +164,14 @@ local function create_sessions(start, target_width)
 		}
 	end
 	return buttons
+end
+
+local function create_shortcut(icon, sc, txt, keybind)
+	local button = dashboard.button(sc, txt, keybind)
+	button.opts.cursor = 5 
+	button.opts.hl = { { "Number", 1, 3 } }
+	button.opts.width = 30
+	return button
 end
 
 -- local sessions = session_utils.get_sessions()
@@ -194,6 +209,7 @@ end
 -- }
 --
 
+
 -- dashboard.section.header.val = {
 -- 			"                                   ",
 -- 			"          ▀████▀▄▄              ▄█ ",
@@ -217,15 +233,141 @@ end
 local section_header = {
 	type = "text",
 	val = {
-		[[                                                                       ]],
-		[[  ██████   █████                   █████   █████  ███                  ]],
-		[[ ░░██████ ░░███                   ░░███   ░░███  ░░░                   ]],
-		[[  ░███░███ ░███   ██████   ██████  ░███    ░███  ████  █████████████   ]],
-		[[  ░███░░███░███  ███░░███ ███░░███ ░███    ░███ ░░███ ░░███░░███░░███  ]],
-		[[  ░███ ░░██████ ░███████ ░███ ░███ ░░███   ███   ░███  ░███ ░███ ░███  ]],
-		[[  ░███  ░░█████ ░███░░░  ░███ ░███  ░░░█████░    ░███  ░███ ░███ ░███  ]],
-		[[  █████  ░░█████░░██████ ░░██████     ░░███      █████ █████░███ █████ ]],
-		[[ ░░░░░    ░░░░░  ░░░░░░   ░░░░░░       ░░░      ░░░░░ ░░░░░ ░░░ ░░░░░  ]],
+-- ⠄⠄⠄⢸⣼⣿⣵⣦⣿⣿⣮⣶⣤⣄⣐⣨⣛⣲⣶⣤⣤⣠⣄⣀⢀⣀⣀⣀
+-- ⠄⠄⠄⣼⡟⣿⡿⣿⣿⣿⣿⣿⣿⣿⣿⡝⠉⠉⠉⠛⢿⣿⣿⣽⣀⣻⠾⠚
+-- ⠄⠄⠄⣯⠁⢠⣌⡻⣯⣿⣿⣿⣿⣿⣿⣣⠄⢸⣿⣷⣦⡈⢻⣿⡇⠄⠄⠄
+-- ⠄⠄⠄⢸⣸⠰⣿⣿⣼⣿⣿⣿⣿⣿⣿⣿⠄⠘⣿⣿⣿⣿⣴⣿⡇⠄⠄⠄
+-- ⠄⠄⠄⢸⣿⣆⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⠼⢿⣿⣿⣿⣿⣿⠇⠊⠄⠄
+-- ⠄⠄⠄⢸⣿⣷⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⠁⠄⠄⠄
+-- ⠄⠄⠄⠸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⠋⠁⠄⠄⠄⠄⠄
+-- ⠄⠄⠄⢣⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣿⠎⠄⠄⠄⠄⠄⠄
+-- ⠄⠄⠄⠈⢿⣿⣿⡿⠿⣻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇⠄⠄⠄⠄⠄⠄⠄
+-- ⠄⠄⠄⠄⠄⠙⠃⣀⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⣀⣤⣢⡴⣿⣰⡇⠄
+-- ⣿⡆⠄⠈⠄⠄⠄⠙⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⠿⠛⣡⣾⣿⣿⡆⠄
+--
+--❤️⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀❤️
+-- ⠀⠀⠀⠀⠀⠀❤️❤️⠀⠀⠀⠀⠀⠀❤️❤️⠀⠀
+-- ⠀⠀⠀⠀⠀❤️⠀⠀⠀❤️⠀⠀❤️⠀⠀⠀❤️
+-- ⠀⠀⠀⠀⠀❤️⠀⠀⠀⠀⠀❤️⠀⠀⠀⠀⠀❤️
+-- ⠀⠀⠀⠀⠀⠀❤️⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀❤️
+-- ⠀⠀⠀⠀⠀⠀⠀⠀❤️⠀⠀⠀⠀⠀⠀❤️
+-- ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀❤️⠀⠀❤️
+-- ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀❤️
+--
+-- ⠀⠀⠀⠀⠀⠀⠀❤️⠀ MEOW ⠀❤️
+--
+-- ⣿⣿⣿⣿⡟⣙⡛⢿⣿⣿⣿⣿⣿⣿⣿⣿⢟⣛⢻
+-- ⣿⣿⣿⣿⢰⣿⣿⣌⣍⠄⣆⠄⡆⢀⣙⣡⣿⣿⢸⣿
+-- ⣿⣿⣿⡟⢸⣿⣿⣿⣿⣾⣿⣾⣿⣾⣿⣿⣿⠏⣾⣿
+-- ⣿⣿⠏⣴⣿⣿⣿⠛⠛⣿⣿⣿⣿⡿⠛⠻⣿⣴⡌⡿⣿
+-- ⣟⣛⢈⣹⣿⣿⣿⣦⣥⣿⢯⠉⣿⣷⣬⣴⣿⣯⡲⠸⠿⢶
+-- ⣯⣿⢰⣾⣿⣿⣿⣿⣿⣿⣷⣶⣾⣿⣿⣿⣿⣿⣿⡏⣿
+-- ⣿⡿⣸⣿⣿⡿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⣿⣿⡇⣿
+-- ⣿⢡⣿⣿⣿⣿⣌⠻⣿⣿⣿⣿⣿⣿⠟⣡⣾⣿⣿⠇⠹⣿⣿⡿⠛⢛⠻⣿
+-- ⣟⣀⣬⣿⣦⣝⠛⢃⣼⣿⣿⣿⣿⣿⣘⢛⣫⣴⣿⠦⠄⢻⣿⢰⣦⣼⣷⢸
+-- ⡏⠉⣻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⣤⢸⣿⡘⣿⡄⣶⣾
+-- ⡟⠛⠛⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⣿⣿⣿⣦⡀⢸⣿⢃⣿⣧⢸
+-- ⣧⢠⣾⣿⣿⣏⣛⡻⢿⣿⣿⣿⣿⠿⣋⣴⣿⣿⣿⣿⣧⣭⡴⣿⡋⠋⣼
+-- ⣿⣦⡙⢿⡿⠿⢿⣿⠆⣿⣿⣿⣿⠸⡿⠟⡋⠼⢛⣛⣛⣛⣃⣬⣴⣾⣿
+-- ⣿⣿⣿⣶⣾⣭⣤⣤⣬⣭⣭⣭⣭⣥⣤⣵⣶⣿⣿
+-- ░░░░░░░█▐▓▓░████▄▄▄█▀▄▓▓▓▌█
+-- ░░░░░▄█▌▀▄▓▓▄▄▄▄▀▀▀▄▓▓▓▓▓▌█
+-- ░░░▄█▀▀▄▓█▓▓▓▓▓▓▓▓▓▓▓▓▀░▓▌█
+-- ░░█▀▄▓▓▓███▓▓▓███▓▓▓▄░░▄▓▐█▌
+-- ░█▌▓▓▓▀▀▓▓▓▓███▓▓▓▓▓▓▓▄▀▓▓▐█
+-- ▐█▐██▐░▄▓▓▓▓▓▀▄░▀▓▓▓▓▓▓▓▓▓▌█▌
+-- █▌███▓▓▓▓▓▓▓▓▐░░▄▓▓███▓▓▓▄▀▐█
+-- █▐█▓▀░░▀▓▓▓▓▓▓▓▓▓██████▓▓▓▓▐█
+-- ▌▓▄▌▀░▀░▐▀█▄▓▓██████████▓▓▓▌█▌
+-- ▌▓▓▓▄▄▀▀▓▓▓▀▓▓▓▓▓▓▓▓█▓█▓█▓▓▌█▌
+-- █▐▓▓▓▓▓▓▄▄▄▓▓▓▓▓▓█▓█▓█▓█▓▓▓▐█
+--
+-- ░▀█░█████████████████▀▀░░░██░████
+-- ▄▄█████████████████▀░░░░░░██░████
+-- ███▀▀████████████▀░░░░░░░▄█░░████
+-- ███▄░░░░▀▀█████▀░▄▀▄░░░░▄█░░▄████
+-- ░███▄▄░░▄▀▄░▀███▄▀▀░░▄▄▀█▀░░█████
+-- ▄▄█▄▀█▄▄░▀▀████████▀███░░▄░██████
+-- ▀████▄▀▀▀██▀▀██▀▀██░░▀█░░█▄█████░
+-- ░░▀▀███▄░▀█░░▀█░░░▀░█░░░▄██████░▄
+-- ████▄▄▀██▄
+--
+--
+--
+--
+--
+-- ███╗   ██╗██╗███████╗██████╗ ██╗   ██╗██╗███╗   ███╗
+-- ████╗  ██║██║██╔════╝██╔══██╗██║   ██║██║████╗ ████║
+-- ██╔██╗ ██║██║█████╗  ██████╔╝██║   ██║██║██╔████╔██║
+-- ██║╚██╗██║██║██╔══╝  ██╔══██╗╚██╗ ██╔╝██║██║╚██╔╝██║
+-- ██║ ╚████║██║███████╗██║  ██║ ╚████╔╝ ██║██║ ╚═╝ ██║
+-- ╚═╝  ╚═══╝╚═╝╚══════╝╚═╝  ╚═╝  ╚═══╝  ╚═╝╚═╝     ╚═╝
+--                                                     
+--
+--
+-- [[ ███▄▄▄▄    ▄█     ▄████████    ▄████████  ▄█    █▄   ▄█     ▄▄▄▄███▄▄▄▄   ]],
+-- [[ ███▀▀▀██▄ ███    ███    ███   ███    ███ ███    ███ ███   ▄██▀▀▀███▀▀▀██▄ ]],
+-- [[ ███   ███ ███▌   ███    █▀    ███    ███ ███    ███ ███▌  ███   ███   ███ ]],
+-- [[ ███   ███ ███▌  ▄███▄▄▄      ▄███▄▄▄▄██▀ ███    ███ ███▌  ███   ███   ███ ]],
+-- [[ ███   ███ ███▌ ▀▀███▀▀▀     ▀▀███▀▀▀▀▀   ███    ███ ███▌  ███   ███   ███ ]],
+-- [[ ███   ███ ███    ███    █▄  ▀███████████ ███    ███ ███   ███   ███   ███ ]],
+-- [[ ███   ███ ███    ███    ███   ███    ███ ███    ███ ███   ███   ███   ███ ]],
+-- [[  ▀█   █▀  █▀     ██████████   ███    ███  ▀██████▀  █▀     ▀█   ███   █▀  ]],
+-- [[                               ███    ███                                  ]],
+
+		-- [[	      ::::    :::  :::::::::::  ::::::::::  :::::::::    :::     :::  :::::::::::    :::   ::: ]],
+		-- [[	     :+:+:   :+:      :+       :+:         :+:    :+:   :+:     :+:      :+:       :+:+: :+:+: ]],
+		-- [[	    :+:+:+  +:+      +:+      +:+         +:+    +:+   +:+     +:+      +:+      +:+ +:+:+ +:+ ]],
+		-- [[	   +#+ +:+ +#+      +#+      +#++:++#    +#++:++#:    +#+     +:+      +#+      +#+  +:+  +#+  ]],
+		-- [[	  +#+  +#+#+#      +#+      +#+         +#+    +#+    +#+   +#+       +#+      +#+       +#+   ]],
+		-- [[	 #+#   #+#+#      #+#      #+#         #+#    #+#     #+#+#+#        #+#      #+#       #+#    ]],
+		-- [[	###    ####  ###########  ##########  ###    ###       ###      ###########  ###       ###     ]],
+
+		-- [[                                                                                                    ]],
+		-- [[⠄⠄⠄..⢠⣿⣿⣿⣿⢻⣿⣿⣿⣿⣿⣿⣿⣿⣯⢻⣿⣿⣿⣆⠄.⠄⠄                                                                       ]],
+		-- [[⠄⠄⠄⠄⢠⣿⣿⣿⣿⣿⢻⣿⣿⣿⣿⣿⣿⣿⣿⣯⢻⣿⣿⣿⣿⣆⠄⠄⠄                                                                       ]],
+		-- [[⠄⠄⣼⢀⣿⣿⣿⣿⣏⡏⠄⠹⣿⣿⣿⣿⣿⣿⣿⣿⣧⢻⣿⣿⣿⣿⡆⠄⠄  ██████   █████                   █████   █████  ███                  ]],
+		-- [[⠄⠄⡟⣼⣿⣿⣿⣿⣿⠄⠄⠄⠈⠻⣿⣿⣿⣿⣿⣿⣿⣇⢻⣿⣿⣿⣿⠄⠄ ░░██████ ░░███                   ░░███   ░░███  ░░░                   ]],
+		-- [[⠄⢰⠃⣿⣿⠿⣿⣿⣿⠄⠄⠄⠄⠄⠄⠙⠿⣿⣿⣿⣿⣿⠄⢿⣿⣿⣿⡄⠄  ░███░███ ░███   ██████   ██████  ░███    ░███  ████  █████████████   ]],
+		-- [[⠄⢸⢠⣿⣿⣧⡙⣿⣿⡆⠄⠄⠄⠄⠄⠄⠄⠈⠛⢿⣿⣿⡇⠸⣿⡿⣸⡇⠄  ░███░░███░███  ███░░███ ███░░███ ░███    ░███ ░░███ ░░███░░███░░███  ]],
+		-- [[⠄⠈⡆⣿⣿⣿⣿⣦⡙⠳⠄⠄⠄⠄⠄⠄⢀⣠⣤⣀⣈⠙⠃⠄⠿⢇⣿⡇⠄  ░███ ░░██████ ░███████ ░███ ░███ ░░███   ███   ░███  ░███ ░███ ░███  ]],
+		-- [[⠄⠄⡇⢿⣿⣿⣿⣿⡇⠄⠄⠄⠄⠄⣠⣶⣿⣿⣿⣿⣿⣿⣷⣆⡀⣼⣿⡇⠄  ░███  ░░█████ ░███░░░  ░███ ░███  ░░░█████░    ░███  ░███ ░███ ░███  ]],
+		-- [[⠄⠄⢹⡘⣿⣿⣿⢿⣷⡀⠄⢀⣴⣾⣟⠉⠉⠉⠉⣽⣿⣿⣿⣿⠇⢹⣿⠃⠄  █████  ░░█████░░██████ ░░██████     ░░███      █████ █████░███ █████ ]],
+		-- [[⠄⠄⠄⢷⡘⢿⣿⣎⢻⣷⠰⣿⣿⣿⣿⣦⣀⣀⣴⣿⣿⣿⠟⢫⡾⢸⡟⠄⠄ ░░░░░    ░░░░░  ░░░░░░   ░░░░░░       ░░░      ░░░░░ ░░░░░ ░░░ ░░░░░  ]],
+		-- [[⠄⠄⠄⠄⠻⣦⡙⠿⣧⠙⢷⠙⠻⠿⢿⡿⠿⠿⠛⠋⠉⠄⠂⠘⠁⠞⠄⠄⠄                                                                       ]],
+		-- [[⠄⠄⠄⠄⠄⠈⠙⠑⣠⣤⣴⡖⠄⠿⣋⣉⣉⡁⠄⢾⣦⠄⠄⠄⠄⠄⠄⠄⠄                                                                       ]],
+		-- [[                                                                                                    ]],
+		--
+[[                                                                                                  ]],
+[[                                                                                                  ]],
+[[   ⠄⢠⣿⣿⣿⣿⣿⢻⣿⣿⣿⣿⣿⣿⣿⣿⣯⢻⣿⣿⣿⣿⣆                                                                        ]],
+[[  ⣼⢀⣿⣿⣿⣿⣏⡏ ⠹⣿⣿⣿⣿⣿⣿⣿⣿⣧⢻⣿⣿⣿⣿⡆  ███╗     ██╗██╗█████████╗█████████╗     ██╗      ██╗██╗██╗       ██╗ ]],
+[[  ⡟⣼⣿⣿⣿⣿⣿   ⠈⠻⣿⣿⣿⣿⣿⣿⣿⣇⢻⣿⣿⣿⣿  ████╗    ██║██║██╔══════╝██╔═════██╗    ██║      ██║██║███╗     ███║ ]],
+[[ ⢰⠃⣿⣿⠿⣿⣿⣿      ⠙⠿⣿⣿⣿⣿⣿⠄⢿⣿⣿⣿⡄ ██╔██╗   ██║██║██║       ██║     ██║    ██║      ██║██║████╗   ████║ ]],
+[[ ⢸⢠⣿⣿⣧⡙⣿⣿⡆       ⠈⠛⢿⣿⣿⡇⠸⣿⡿⣸⡇ ██║╚██╗  ██║██║███████╗  █████████╔╝    ██║      ██║██║██╔██╗ ██╔██║ ]],
+[[ ⠈⡆⣿⣿⣿⣿⣦⡙⠳      ⢀⣠⣤⣀⣈⠙⠃⠄⠿⢇⣿⡇ ██║ ╚██╗ ██║██║██╔════╝  ██╔═════██╗    ╚██╗    ██╔╝██║██║╚████╔╝██║ ]],
+[[  ⡇⢿⣿⣿⣿⣿⡇     ⣠⣶⣿⣿⣿⣿⣿⣿⣷⣆⡀⣼⣿⡇ ██║  ╚██╗██║██║██║       ██║     ██║     ╚██╗  ██╔╝ ██║██║ ╚██╔╝ ██║ ]],
+[[  ⢹⡘⣿⣿⣿⢿⣷⡀ ⢀⣴⣾⣟⠉⠉⠉⠉⣽⣿⣿⣿⣿⠇⢹⣿⠃ ██║   ╚████║██║█████████╗██║     ██║      ╚█████╔╝  ██║██║  ╚═╝  ██║ ]],
+[[   ⢷⡘⢿⣿⣎⢻⣷⠰⣿⣿⣿⣿⣦⣀⣀⣴⣿⣿⣿⠟⢫⡾⢸⡟  ╚═╝    ╚═══╝╚═╝╚════════╝╚═╝     ╚═╝       ╚════╝   ╚═╝╚═╝       ╚═╝ ]],
+[[     ⠻⣦⡙⠿⣧⠙⢷⠙⠻⠿⢿⡿⠿⠿⠛⠋⠉⠄⠂⠘⠁⠞                                                                       ]],
+[[      ⠈⠙⠑⣠⣤⣴⡖⠄⠿⣋⣉⣉⡁⠄⢾⣦⠄                                                                           ]],
+[[                                                                                                  ]],
+[[                                                                                                  ]],
+
+		-- [[                                                                                                    ]],
+		-- [[    ⠄⢠⣿⣿⣿⣿⢻⣿⣿⣿⣿⣿⣿⣿⣿⣯⢻⣿⣿⣿⣆                                                                           ]],
+		-- [[   ⠄⢠⣿⣿⣿⣿⣿⢻⣿⣿⣿⣿⣿⣿⣿⣿⣯⢻⣿⣿⣿⣿⣆                                                                          ]],
+		-- [[  ⣼⢀⣿⣿⣿⣿⣏⡏ ⠹⣿⣿⣿⣿⣿⣿⣿⣿⣧⢻⣿⣿⣿⣿⡆    ██████   █████                   █████   █████  ███                  ]],
+		-- [[  ⡟⣼⣿⣿⣿⣿⣿   ⠈⠻⣿⣿⣿⣿⣿⣿⣿⣇⢻⣿⣿⣿⣿   ░░██████ ░░███                   ░░███   ░░███  ░░░                   ]],
+		-- [[ ⢰⠃⣿⣿⠿⣿⣿⣿      ⠙⠿⣿⣿⣿⣿⣿⠄⢿⣿⣿⣿⡄   ░███░███ ░███   ██████   ██████  ░███    ░███  ████  █████████████   ]],
+		-- [[ ⢸⢠⣿⣿⣧⡙⣿⣿⡆       ⠈⠛⢿⣿⣿⡇⠸⣿⡿⣸⡇   ░███░░███░███  ███░░███ ███░░███ ░███    ░███ ░░███ ░░███░░███░░███  ]],
+		-- [[ ⠈⡆⣿⣿⣿⣿⣦⡙⠳      ⢀⣠⣤⣀⣈⠙⠃⠄⠿⢇⣿⡇   ░███ ░░██████ ░███████ ░███ ░███ ░░███   ███   ░███  ░███ ░███ ░███  ]],
+		-- [[  ⡇⢿⣿⣿⣿⣿⡇     ⣠⣶⣿⣿⣿⣿⣿⣿⣷⣆⡀⣼⣿⡇   ░███  ░░█████ ░███░░░  ░███ ░███  ░░░█████░    ░███  ░███ ░███ ░███  ]],
+		-- [[  ⢹⡘⣿⣿⣿⢿⣷⡀ ⢀⣴⣾⣟⠉⠉⠉⠉⣽⣿⣿⣿⣿⠇⢹⣿⠃   █████  ░░█████░░██████ ░░██████     ░░███      █████ █████░███ █████ ]],
+		-- [[   ⢷⡘⢿⣿⣎⢻⣷⠰⣿⣿⣿⣿⣦⣀⣀⣴⣿⣿⣿⠟⢫⡾⢸⡟   ░░░░░    ░░░░░  ░░░░░░   ░░░░░░       ░░░      ░░░░░ ░░░░░ ░░░ ░░░░░  ]],
+		-- [[    ⠻⣦⡙⠿⣧⠙⢷⠙⠻⠿⢿⡿⠿⠿⠛⠋⠉⠄⠂⠘⠁⠞                                                                          ]],
+		-- [[     ⠈⠙⠑⣠⣤⣴⡖⠄⠿⣋⣉⣉⡁⠄⢾⣦⠄                                                                              ]],
+		-- [[                                                                                                    ]],
 	},
 	opts = {
 		position = "center",
@@ -241,11 +383,12 @@ local section_projects = {
 			type = "text",
 			val = "Projects",
 			opts = {
-				hl = "SpecialComment",
+				hl = "Keyword",
 				shrink_margin = false,
 				position = "center",
 			},
 		},
+		{ type = "padding", val = 1 },
 		{
 			type = "group",
 			val = create_projects,
@@ -260,11 +403,12 @@ local section_sessions = {
 			type = "text",
 			val = "Sessions",
 			opts = {
-				hl = "SpecialComment",
+				hl = "Keyword",
 				shrink_margin = false,
 				position = "center",
 			},
 		},
+		{ type = "padding", val = 1 },
 		{
 			type = "group",
 			val = create_sessions,
@@ -276,13 +420,17 @@ local section_sessions = {
 local section_shotcuts = {
 	type = "group",
 	val = {
-		{ type = "text", val = "Menu", opts = { hl = "SpecialComment", position = "center" } },
+		{ type = "text", val = "Menu", opts = { hl = "Keyword", position = "center" } },
 		{ type = "padding", val = 1 },
-		dashboard.button("e", "  New file", "<cmd>ene<CR>"),
-		dashboard.button("f", "  Find file", "<cmd>Telescope find_files<CR>"),
-		dashboard.button("r", "  Recently", "<cmd>Telescope oldfiles<CR>"),
-		dashboard.button("p", "  Projects", "<cmd>Telescope projects<CR>"),
-		dashboard.button("s", "  Sessions", "<cmd>SessionManager load_session<CR>"),
+		{ type = "group",
+			val = {
+				create_shortcut('', "e", "  New file", "<cmd>ene<CR>"),
+				create_shortcut('', "f", "  Find file", "<cmd>Telescope find_files<CR>"),
+				create_shortcut('', "r", "  Recently", "<cmd>Telescope oldfiles<CR>"),
+				create_shortcut('', "p", "  Projects", "<cmd>Telescope projects<CR>"),
+				create_shortcut('', "s", "  Sessions", "<cmd>SessionManager load_session<CR>"),
+			}
+		}
 		-- dashboard.button("c", "  Configuration", "<cmd>e ~/AppData/Local/nvim/init.lua <CR>"),
 		-- dashboard.button("u", "  Update plugins", "<cmd>PackerSync<CR>"),
 		-- dashboard.button("q", "  Quit", "<cmd>qa<CR>"),
@@ -292,10 +440,15 @@ local section_shotcuts = {
 
 local function get_info()
 	local total_plugins = #vim.tbl_keys(_G.packer_plugins)
-	local datetime = os.date(" %Y-%m-%d   %A")
+	local weeks = { "太阳星", "荧惑星", "辰星", "岁星", "太白星", "镇星", "太阴星" }
+	-- local datetime = os.date(" %Y-%m-%d   %A")
+	local datetime = os.date(" %Y-%m-%d")
+	local wday = os.date("*t").wday
 	local version = vim.version()
 	local nvim_version_info = "   v" .. version.major .. "." .. version.minor .. "." .. version.patch
-	return datetime .. "   " .. total_plugins .. " plugins" .. nvim_version_info
+	return icons.ui.calendar ..
+		datetime ..
+		"  " .. icons.ui.calendar_minus_o .. " " .. weeks[wday] .. "   " .. total_plugins .. " plugins" .. nvim_version_info
 end
 
 local section_info = {
@@ -333,7 +486,7 @@ local config = {
 		section_sessions,
 		{ type = "padding", val = 1 },
 		section_projects,
-		{ type = "padding", val = 1 },
+		{ type = "padding", val = 2 },
 		section_info,
 	},
 	opts = {
