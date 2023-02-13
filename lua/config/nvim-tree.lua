@@ -4,7 +4,13 @@ local noremap_n_slient = { noremap = true, silent = true }
 require("nvim-tree").setup({
 	view = {
 		width = 40,
-	}
+	},
+	sync_root_with_cwd = true,
+	respect_buf_cwd = true,
+	update_focuesd_file = {
+		enable = true,
+		update_root = true,
+	},
 })
 
 

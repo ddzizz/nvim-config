@@ -252,6 +252,9 @@ return require('packer').startup({
 			end
 		}
 
+		-- 高亮所有与光标所在位置的相同的单词
+		use 'RRethy/vim-illuminate'
+
 		-- For golang
 
 		-- 主题
