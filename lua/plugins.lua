@@ -270,6 +270,8 @@ return require('packer').startup({
 		}
 		]]
 		use "olimorris/onedarkpro.nvim"
+		use 'AlexvZyl/nordic.nvim'
+		use ({ 'projekt0n/github-nvim-theme', tag = 'v0.0.7' })
 	end,
 	config = {
 		max_jobs = 8,
