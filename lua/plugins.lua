@@ -146,11 +146,10 @@ return require('packer').startup({
 		use { 'nvim-lua/plenary.nvim' }
 		use { 'nvim-telescope/telescope-ui-select.nvim' }
 		-- use { 'nvim-telescope/telescope-project.nvim' }
+		use { "ahmedkhalf/project.nvim" }
 		use {
-			"ahmedkhalf/project.nvim",
-			config = function()
-				require("config.project")
-			end
+			"nvim-telescope/telescope-file-browser.nvim",
+			requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
 		}
 		use {
 			'nvim-telescope/telescope.nvim',
@@ -222,6 +221,11 @@ return require('packer').startup({
 		use 'mhartington/formatter.nvim'
 		]]
 
+		-- 终端
+		--[[ use { "akinsho/toggleterm.nvim", tag = '*', config = function()
+			require("config.toggleterm")
+		end } ]]
+
 		-- Autocompletion
 		use { 'hrsh7th/cmp-nvim-lsp' }
 		use { 'hrsh7th/cmp-buffer' }
@@ -271,7 +275,7 @@ return require('packer').startup({
 		]]
 		use "olimorris/onedarkpro.nvim"
 		use 'AlexvZyl/nordic.nvim'
-		use ({ 'projekt0n/github-nvim-theme', tag = 'v0.0.7' })
+		use({ 'projekt0n/github-nvim-theme', tag = 'v0.0.7' })
 	end,
 	config = {
 		max_jobs = 8,
