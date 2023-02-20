@@ -164,7 +164,16 @@ return require('packer').startup({
 		use { 'mg979/vim-visual-multi', branch = 'master' }
 		use 'mbbill/undotree'
 		use 'liuchengxu/vista.vim'
-		use 'brooth/far.vim'
+
+		-- 替换
+		-- use 'brooth/far.vim'
+		use {
+			'windwp/nvim-spectre',
+			requires = { "nvim-lua/plenary.nvim" },
+			config = function()
+				require('config.nvim-spectre')
+			end
+		}
 
 		-- nvim lua API
 		use {
