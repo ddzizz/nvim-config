@@ -55,7 +55,7 @@ for _, svr in ipairs(servers) do
 end
 ]]
 
-local cfgs = { 'lua', 'go', 'csharp' }
+local cfgs = { 'lua', 'go', 'csharp', 'yaml' }
 for _, cfg in ipairs(cfgs) do
 	require('config.lsp.' .. cfg).init({
 		on_attach = on_attach,
