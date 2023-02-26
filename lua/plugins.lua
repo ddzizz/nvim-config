@@ -44,6 +44,7 @@ return require('packer').startup({
 		use { 'lewis6991/impatient.nvim' }
 
 		-- vim必备,快速操作包围符号
+		use 'tpope/vim-repeat'
 		use 'tpope/vim-surround'
 
 		-- 对齐
@@ -56,6 +57,28 @@ return require('packer').startup({
 			"windwp/nvim-autopairs",
 			config = function()
 				require("config.nvim-autopairs")
+			end
+		}
+
+		-- 快速移动
+		use {
+			'ggandor/leap.nvim',
+			config = function()
+				require('leap').add_default_mappings()
+			end
+		}
+		use {
+			'ggandor/flit.nvim',
+			config = function()
+				require('flit').setup {
+					keys = { f = 'f', F = 'F', t = 't', T = 'T' },
+					-- A string like "nv", "nvo", "o", etc.
+					labeled_modes = "v",
+					multiline = true,
+					-- Like `leap`s similar argument (call-specific overrides).
+					-- E.g.: opts = { equivalence_classes = {} }
+					opts = {}
+				}
 			end
 		}
 
@@ -119,11 +142,23 @@ return require('packer').startup({
 		})
 
 		-- 文件树
-		use {
+		--[[ use {
 			'nvim-tree/nvim-tree.lua',
 			requires = { 'nvim-tree/nvim-web-devicons' },
 			config = function()
 				require('config.nvim-tree')
+			end
+		} ]]
+		use {
+			"nvim-neo-tree/neo-tree.nvim",
+			branch = "v2.x",
+			requires = {
+				"nvim-lua/plenary.nvim",
+				"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+				"MunifTanjim/nui.nvim",
+			},
+			config = function()
+				require('config.neo-tree')
 			end
 		}
 
@@ -185,17 +220,38 @@ return require('packer').startup({
 			end
 		}
 
-		--
+		-- vim命令菜单
 		use {
 			'gelguy/wilder.nvim',
 			config = function()
 				-- config goes here
 				local wilder = require('wilder')
 				wilder.setup({ modes = { ':', '/', '?' } })
+				-- wilder.set_option('renderer', wilder.popupmenu_renderer(
+				-- 	wilder.popupmenu_palette_theme({
+				-- 		-- 'single', 'double', 'rounded' or 'solid'
+				-- 		-- can also be a list of 8 characters, see :h wilder#popupmenu_palette_theme() for more details
+				-- 		border = 'rounded',
+				-- 		max_height = '75%', -- max height of the palette
+				-- 		min_height = 0, -- set to the same as 'max_height' for a fixed height window
+				-- 		prompt_position = 'top', -- 'top' or 'bottom' to set the location of the prompt
+				-- 		reverse = 0, -- set to 1 to reverse the order of the list, use in combination with 'prompt_position'
+				-- 	})
+				-- ))
+
+				wilder.set_option('pipeline', {
+					wilder.branch(
+						wilder.cmdline_pipeline(),
+						wilder.search_pipeline()
+					),
+				})
+
+				wilder.set_option('renderer', wilder.wildmenu_renderer({
+					highlighter = wilder.basic_highlighter(),
+				}))
 			end,
 		}
 
-		-- 代码补全
 		-- LSP
 		use {
 			'neovim/nvim-lspconfig',
@@ -235,7 +291,7 @@ return require('packer').startup({
 			require("config.toggleterm")
 		end } ]]
 
-		-- Autocompletion
+		-- 自动补全
 		use { 'hrsh7th/cmp-nvim-lsp' }
 		use { 'hrsh7th/cmp-buffer' }
 		use { 'hrsh7th/cmp-path' }
@@ -246,12 +302,28 @@ return require('packer').startup({
 				require('config.nvim-cmp')
 			end,
 		}
-		use 'hrsh7th/cmp-vsnip' -- { name = 'vsnip' }
-		use 'hrsh7th/vim-vsnip'
+
+		-- snippets
+		-- use 'hrsh7th/cmp-vsnip' -- { name = 'vsnip' }
+		-- use 'hrsh7th/vim-vsnip'
+		use({
+			"L3MON4D3/LuaSnip",
+			-- follow latest release.
+			tag = "v<CurrentMajor>.*",
+			-- install jsregexp (optional!:).
+			run = "make install_jsregexp"
+		})
+		use { 'saadparwaiz1/cmp_luasnip' }
+
 		-- 非常强大包含了大部分常用语言的代码段
 		use 'rafamadriz/friendly-snippets'
 		-- 是在代码提示中，显示分类的小图标支持
 		use 'onsails/lspkind-nvim'
+
+		-- 显示自动补全签名
+		use {
+			"ray-x/lsp_signature.nvim",
+		}
 
 		-- Highlight
 		use {
@@ -268,6 +340,16 @@ return require('packer').startup({
 		-- 高亮所有与光标所在位置的相同的单词
 		use 'RRethy/vim-illuminate'
 
+
+		-- 显示各种错误的详细列表
+		use {
+			"folke/trouble.nvim",
+			requires = "nvim-tree/nvim-web-devicons",
+			config = function()
+				require("trouble").setup {}
+			end
+		}
+
 		-- For golang
 
 		-- 主题
@@ -282,6 +364,7 @@ return require('packer').startup({
 			end
 		}
 		]]
+		use 'folke/tokyonight.nvim'
 		use "olimorris/onedarkpro.nvim"
 		use 'AlexvZyl/nordic.nvim'
 		use({ 'projekt0n/github-nvim-theme', tag = 'v0.0.7' })

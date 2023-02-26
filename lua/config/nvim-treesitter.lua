@@ -2,7 +2,7 @@ local vim = vim
 
 require 'nvim-treesitter.configs'.setup {
 	-- A list of parser names, or "all" (the four listed parsers should always be installed)
-	ensure_installed = { "c", "lua", "vim", "help" },
+	ensure_installed = {},
 
 	-- Install parsers synchronously (only applied to `ensure_installed`)
 	sync_install = false,
@@ -12,7 +12,7 @@ require 'nvim-treesitter.configs'.setup {
 	auto_install = false,
 
 	-- List of parsers to ignore installing (for "all")
-	ignore_install = { "javascript" },
+	ignore_install = {},
 
 	---- If you need to change the installation directory of the parsers (see -> Advanced Setup)
 	-- parser_install_dir = "/some/path/to/store/parsers", -- Remember to run vim.opt.runtimepath:append("/some/path/to/store/parsers")!
@@ -42,6 +42,7 @@ require 'nvim-treesitter.configs'.setup {
 		-- Instead of true it can also be a list of languages
 		additional_vim_regex_highlighting = false,
 	},
+	indent = { enable = true, disable = { "yaml", "python" } },
 }
 
 --[[
