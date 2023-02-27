@@ -6,8 +6,8 @@ cmp.setup({
 	snippet = {
 		-- REQUIRED - you must specify a snippet engine
 		expand = function(args)
-			vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
-			-- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+			-- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+			require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
 			-- require('snippy').expand_snippet(args.body) -- For `snippy` users.
 			-- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
 		end,
@@ -34,13 +34,16 @@ cmp.setup({
 	}),
 	sources = cmp.config.sources({
 		{ name = 'nvim_lsp' },
-		{ name = 'vsnip' }, -- For vsnip users.
-		-- { name = 'luasnip' }, -- For luasnip users.
+		-- { name = 'vsnip' }, -- For vsnip users.
+		{ name = 'luasnip', option = { show_autosnippets = true } }, -- For luasnip users.
 		-- { name = 'ultisnips' }, -- For ultisnips users.
 		-- { name = 'snippy' }, -- For snippy users.
 	}, {
 		{ name = 'buffer' },
+		{ name = 'path' },
 	}),
+	completion = { completeopt = "menu,menuone,noinsert" },
+	experimental = { ghost_text = true },
 	formatting = {
 		format = lspkind.cmp_format({
 			mode = 'symbol', -- show only symbol annotations
@@ -83,3 +86,15 @@ cmp.setup.cmdline(':', {
 	})
 })
 
+require("luasnip").config.set_config({ history = true, updateevents = "TextChanged,TextChangedI" })
+require("luasnip.loaders.from_vscode").load()
+
+local signature_config = {
+  log_path = vim.fn.expand("$HOME") .. "/tmp/sig.log",
+  debug = true,
+  hint_enable = false,
+  handler_opts = { border = "single" },
+  max_width = 80,
+}
+
+require("lsp_signature").setup(signature_config)

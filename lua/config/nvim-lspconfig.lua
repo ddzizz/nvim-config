@@ -42,9 +42,13 @@ local lsp_flags = {
 
 
 -- Set up lspconfig.
-local nvim_lsp = require('lspconfig')
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
-
+-- local nvim_lsp = require('lspconfig')
+-- local capabilities = require('cmp_nvim_lsp').default_capabilities()
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+capabilities.textDocument.completion.completionItem.resolveSupport = {
+	properties = { "documentation", "detail", "additionalTextEdits" },
+}
 -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
 --[[
 local servers = { 'pyright', 'gopls', 'tsserver' }
