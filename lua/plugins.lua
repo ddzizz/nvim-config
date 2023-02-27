@@ -175,6 +175,9 @@ return require('packer').startup({
 			end
 		}
 
+		-- 弹窗提示
+		use {'rcarriga/nvim-notify'}
+
 		-- nvim lua API
 		use {
 			"folke/neodev.nvim",
