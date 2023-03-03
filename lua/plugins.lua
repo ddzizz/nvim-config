@@ -88,6 +88,14 @@ return require('packer').startup({
 		-- 图标
 		use 'nvim-tree/nvim-web-devicons'
 
+		-- git
+		use {
+			'lewis6991/gitsigns.nvim',
+			config = function()
+				require('config.gitsigns')
+			end
+		}
+
 		-- 启动屏
 		-- use {
 		-- 	'glepnir/dashboard-nvim',
@@ -135,11 +143,13 @@ return require('packer').startup({
 				}
 			end
 		}
-		use({
-			'mrjones2014/legendary.nvim',
-			-- sqlite is only needed if you want to use frecency sorting
-			-- requires = 'kkharji/sqlite.lua'
-		})
+		-- use({
+		-- 	'mrjones2014/legendary.nvim',
+		-- 	-- sqlite is only needed if you want to use frecency sorting
+		-- 	-- requires = 'kkharji/sqlite.lua'
+		-- })
+		-- 辅助库
+		use { 'nvim-lua/plenary.nvim' }
 
 		-- 文件树
 		--[[ use {
@@ -178,18 +188,24 @@ return require('packer').startup({
 		}
 
 		-- 文件查找
-		use { 'nvim-lua/plenary.nvim' }
 		use { 'nvim-telescope/telescope-ui-select.nvim' }
 		-- use { 'nvim-telescope/telescope-project.nvim' }
 		use { "ahmedkhalf/project.nvim" }
-		use {
+		use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+		--[[ use {
 			"nvim-telescope/telescope-file-browser.nvim",
-			requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
-		}
+			requires = {
+				"nvim-telescope/telescope.nvim",
+				"nvim-lua/plenary.nvim",
+			}
+		} ]]
 		use {
 			'nvim-telescope/telescope.nvim',
 			tag = '0.1.1',
-			requires = { { 'nvim-lua/plenary.nvim' } },
+			requires = {
+				{ 'nvim-lua/plenary.nvim' },
+				{ "nvim-telescope/telescope-fzf-native.nvim", run = 'make' }
+			},
 			config = function()
 				require('config.telescope')
 			end
@@ -311,7 +327,10 @@ return require('packer').startup({
 			-- follow latest release.
 			tag = "v<CurrentMajor>.*",
 			-- install jsregexp (optional!:).
-			run = "make install_jsregexp"
+			run = "make install_jsregexp",
+			config = function ()
+				require('luasnip.loaders.from_vscode').lazy_load()
+			end
 		})
 		use { 'saadparwaiz1/cmp_luasnip' }
 
