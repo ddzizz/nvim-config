@@ -56,6 +56,9 @@ require("neo-tree").setup({
 		},
 		window = {
 			position = "float",
+			mappings = {
+				["o"] = "system_open",
+			},
 		},
 		-- window = {
 		-- 	mappings = {
@@ -75,22 +78,13 @@ require("neo-tree").setup({
 		-- 		require('telescope.builtin').live_grep(getTelescopeOpts(state, path))
 		-- 	end,
 		-- },
-		-- window = {
-		-- 	mappings = {
-		-- 		["o"] = "system_open",
-		-- 	},
-		-- },
-		-- commands = {
-		-- 	system_open = function(state)
-		-- 		local node = state.tree:get_node()
-		-- 		local path = node:get_id()
-		-- 		-- macOs: open file in default application in the background.
-		-- 		-- Probably you need to adapt the Linux recipe for manage path with spaces. I don't have a mac to try.
-		-- 		vim.api.nvim_command("silent !open -g " .. path)
-		-- 		-- Linux: open file in default application
-		-- 		vim.api.nvim_command(string.format("silent !xdg-open '%s'", path))
-		-- 	end,
-		-- },
+		commands = {
+			system_open = function(state)
+				local node = state.tree:get_node()
+				local path = node:get_id()
+				vim.api.nvim_command("silent !cmd /c start " .. path)
+			end,
+		},
 	},
 
 	event_handlers = {
