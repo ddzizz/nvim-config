@@ -36,6 +36,19 @@ ts.setup({
 				theme = 'dropdown',
 			}
 		}
+	},
+	defaults = {
+		vimgrep_arguments = {
+			'rg',
+			'--color=never',
+			'--no-heading',
+			'--with-filename',
+			'--line-number',
+			'--column',
+			'--smart-case',
+			'--ignore-file',
+			'.file_exclude'
+		}
 	}
 })
 
@@ -47,8 +60,8 @@ ts.load_extension('fzf')
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, noremap_n_slient)
 vim.keymap.set('n', '<C-p>', builtin.find_files, noremap_n_slient)
-vim.keymap.set({'v', 'n'}, '<C-f>', builtin.grep_string, noremap_n_slient)
-vim.keymap.set({'v', 'n'}, '<A-f>', builtin.live_grep, noremap_n_slient)
+vim.keymap.set({ 'v', 'n' }, '<C-f>', builtin.grep_string, noremap_n_slient)
+vim.keymap.set({ 'v', 'n' }, '<A-f>', builtin.live_grep, noremap_n_slient)
 vim.keymap.set('n', '<C-b>', builtin.buffers, noremap_n_slient)
 vim.keymap.set('n', '<leader>fr', builtin.oldfiles, noremap_n_slient)
 -- vim.api.nvim_set_keymap('n', '<leader>fr', ':Telescope oldfiles<CR>', noremap_n_slient)

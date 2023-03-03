@@ -1,4 +1,6 @@
 local vim = vim
+local neotree = require('neo-tree')
+local utils = require('neo-tree.utils')
 local noremap_n_slient = { noremap = true, silent = true }
 
 vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
@@ -33,7 +35,7 @@ local function getTelescopeOpts(state, path)
 	}
 end
 
-require("neo-tree").setup({
+neotree.setup({
 	close_if_last_window = true,
 	-- window = {
 	-- 	width = 30,
@@ -83,12 +85,16 @@ require("neo-tree").setup({
 			system_open = function(state)
 				local node = state.tree:get_node()
 				local path = node:get_id()
-				vim.api.nvim_command('silent !cmd /c start "' .. path .. '"')
+				vim.api.nvim_command('silent !cmd /c start "" "' .. path .. '"')
 			end,
 			wt_open = function(state)
 				local node = state.tree:get_node()
 				local path = node:get_id()
-				vim.api.nvim_command('silent !wt -w 0 nt -d "' .. path .. '"')
+				if node.type == "file" then
+					path, _ = utils.split_path(path)
+				end
+				vim.api.nvim_command('silent !cmd /c start "" "' .. path .. '"')
+				-- vim.api.nvim_command('silent !wt -w 0 nt -d "' .. path .. '"')
 			end,
 		},
 	},
@@ -104,6 +110,9 @@ require("neo-tree").setup({
 		},
 	}
 })
-
-vim.api.nvim_set_keymap("n", "<C-t>", ":Neotree float reveal_force_cwd<CR>", noremap_n_slient)
-vim.api.nvim_set_keymap("n", "<C-g>", ":Neotree float git_status<CR>", noremap_n_slient)
+vim.api.nvim_set_keymap("n", "<C-t>", ":Neotree reveal_force_cwd<CR>", noremap_n_slient)
+vim.api.nvim_set_keymap("n", "<C-g>", ":Neotree git_status<CR>", noremap_n_slient)
+-- vim.api.nvim_set_keymap("n", "<C-t>", ":Neotree float reveal_force_cwd<CR>", noremap_n_slient)
+-- vim.api.nvim_set_keymap("n", "<C-g>", ":Neotree float git_status<CR>", noremap_n_slient)
+-- vim.api.nvim_set_keymap("n", "<C-t>", ":Neotree float reveal<CR>", noremap_n_slient)
+-- vim.api.nvim_set_keymap("n", "<C-b>", ":Neotree float buffers<CR>", noremap_n_slient)
