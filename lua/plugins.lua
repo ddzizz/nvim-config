@@ -82,7 +82,7 @@ return require('packer').startup({
 			end
 		}
 
-		-- Load on an autocommand event
+		-- 快速在括号之间移动
 		use { 'andymass/vim-matchup', event = 'VimEnter' }
 
 		-- 图标
@@ -214,9 +214,11 @@ return require('packer').startup({
 		-- 编码辅助
 		use { 'mg979/vim-visual-multi', branch = 'master' }
 		use 'mbbill/undotree'
+
+		-- 搜索和查看lsp符号，tags
 		use 'liuchengxu/vista.vim'
 
-		-- 替换
+		-- 正则搜索和替换
 		-- use 'brooth/far.vim'
 		use {
 			'windwp/nvim-spectre',
@@ -243,31 +245,7 @@ return require('packer').startup({
 		use {
 			'gelguy/wilder.nvim',
 			config = function()
-				-- config goes here
-				local wilder = require('wilder')
-				wilder.setup({ modes = { ':', '/', '?' } })
-				-- wilder.set_option('renderer', wilder.popupmenu_renderer(
-				-- 	wilder.popupmenu_palette_theme({
-				-- 		-- 'single', 'double', 'rounded' or 'solid'
-				-- 		-- can also be a list of 8 characters, see :h wilder#popupmenu_palette_theme() for more details
-				-- 		border = 'rounded',
-				-- 		max_height = '75%', -- max height of the palette
-				-- 		min_height = 0, -- set to the same as 'max_height' for a fixed height window
-				-- 		prompt_position = 'top', -- 'top' or 'bottom' to set the location of the prompt
-				-- 		reverse = 0, -- set to 1 to reverse the order of the list, use in combination with 'prompt_position'
-				-- 	})
-				-- ))
-
-				wilder.set_option('pipeline', {
-					wilder.branch(
-						wilder.cmdline_pipeline(),
-						wilder.search_pipeline()
-					),
-				})
-
-				wilder.set_option('renderer', wilder.wildmenu_renderer({
-					highlighter = wilder.basic_highlighter(),
-				}))
+				require('config.wilder')
 			end,
 		}
 

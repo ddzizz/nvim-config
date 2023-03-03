@@ -58,6 +58,7 @@ require("neo-tree").setup({
 			position = "float",
 			mappings = {
 				["o"] = "system_open",
+				["O"] = "wt_open",
 			},
 		},
 		-- window = {
@@ -82,7 +83,12 @@ require("neo-tree").setup({
 			system_open = function(state)
 				local node = state.tree:get_node()
 				local path = node:get_id()
-				vim.api.nvim_command("silent !cmd /c start " .. path)
+				vim.api.nvim_command('silent !cmd /c start "' .. path .. '"')
+			end,
+			wt_open = function(state)
+				local node = state.tree:get_node()
+				local path = node:get_id()
+				vim.api.nvim_command('silent !wt -w 0 nt -d "' .. path .. '"')
 			end,
 		},
 	},
@@ -100,3 +106,4 @@ require("neo-tree").setup({
 })
 
 vim.api.nvim_set_keymap("n", "<C-t>", ":Neotree float reveal_force_cwd<CR>", noremap_n_slient)
+vim.api.nvim_set_keymap("n", "<C-g>", ":Neotree float git_status<CR>", noremap_n_slient)
