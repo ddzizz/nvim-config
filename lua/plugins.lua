@@ -190,7 +190,12 @@ return require('packer').startup({
 		-- 文件查找
 		use { 'nvim-telescope/telescope-ui-select.nvim' }
 		-- use { 'nvim-telescope/telescope-project.nvim' }
-		use { "ahmedkhalf/project.nvim" }
+		use {
+			"ahmedkhalf/project.nvim",
+			config = function()
+				require('project_nvim').setup()
+			end
+		}
 		use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 		--[[ use {
 			"nvim-telescope/telescope-file-browser.nvim",
@@ -229,7 +234,7 @@ return require('packer').startup({
 		}
 
 		-- 弹窗提示
-		use {'rcarriga/nvim-notify'}
+		use { 'rcarriga/nvim-notify' }
 
 		-- nvim lua API
 		use {
@@ -309,7 +314,7 @@ return require('packer').startup({
 			tag = "v<CurrentMajor>.*",
 			-- install jsregexp (optional!:).
 			run = "make install_jsregexp",
-			config = function ()
+			config = function()
 				require('luasnip.loaders.from_vscode').lazy_load()
 			end
 		})
@@ -369,6 +374,7 @@ return require('packer').startup({
 		use 'AlexvZyl/nordic.nvim'
 		use({ 'projekt0n/github-nvim-theme', tag = 'v0.0.7' })
 	end,
+	-- Packer设置
 	config = {
 		max_jobs = 8,
 		display = {

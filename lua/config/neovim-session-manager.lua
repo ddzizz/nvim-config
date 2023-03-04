@@ -3,7 +3,8 @@ local sm = require('session_manager')
 local smcfg = require('session_manager.config')
 
 sm.setup({
-	autoload_mode = smcfg.AutoloadMode.Disabled
+	autoload_mode = smcfg.AutoloadMode.Disabled,
+	autosave_only_in_session = true,
 })
 
 -- local config_group = vim.api.nvim_create_augroup('MyConfigGroup', {}) -- A global group for all your config autocommands
