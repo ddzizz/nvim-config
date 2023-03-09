@@ -47,7 +47,7 @@ ts.setup({
 			'--column',
 			'--smart-case',
 			'--ignore-file',
-			'.vimignores'
+			'.vimignore'
 		}
 	}
 })
