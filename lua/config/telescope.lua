@@ -1,6 +1,7 @@
 local vim = vim
 local ts = require('telescope')
 local utils = require('telescope.utils')
+local tst = require('telescope.themes')
 local noremap_n_slient = { noremap = true, silent = true }
 
 
@@ -21,23 +22,21 @@ require("project_nvim").setup({
 
 ts.setup({
 	extensions = {
-		['ui-select'] = {
-			require('telescope.themes').get_dropdown {
-			}
-		},
+		-- ['ui-select'] = {
+		-- 	tst.get_ivy{
+		-- 	}
+		-- },
 		fzf = {
 			fuzzy = true,
 			override_generic_sorter = true,
 			override_file_sorter = true;
 			case_mode = 'smart_case',
 		},
-		pickers = {
-			find_files = {
-				theme = 'dropdown',
-			}
-		}
 	},
 	defaults = {
+		layout_config = {
+			vertical = { width = 0.8, },
+		},
 		vimgrep_arguments = {
 			'rg',
 			'--color=never',
@@ -49,11 +48,17 @@ ts.setup({
 			'--ignore-file',
 			'.vimignore'
 		}
-	}
+	},
+
+	-- pickers = {
+	-- 	find_files = {
+	-- 		theme = 'dropdown',
+	-- 	}
+	-- }
 })
 
 ts.load_extension('projects')
-ts.load_extension('ui-select')
+-- ts.load_extension('ui-select')
 ts.load_extension('fzf')
 -- ts.load_extension('file_browser')
 

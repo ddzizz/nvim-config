@@ -56,6 +56,7 @@ neotree.setup({
 				"thumbs.db"
 			},
 		},
+		hijack_netrw_behavior = "disabled",
 		window = {
 			position = "float",
 			mappings = {
