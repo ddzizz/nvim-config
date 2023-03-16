@@ -121,6 +121,16 @@ return require('packer').startup({
 				require('config.lualine')
 			end
 		}
+		-- use({
+		-- 	'glepnir/galaxyline.nvim',
+		-- 	branch = 'main',
+		-- 	-- your statusline
+		-- 	config = function()
+		-- 		require('config.galaxyline')
+		-- 	end,
+		-- 	-- some optional icons
+		-- 	requires = { 'nvim-tree/nvim-web-devicons', opt = true },
+		-- })
 
 		-- Buffer栏
 		use {
@@ -181,11 +191,27 @@ return require('packer').startup({
 		}
 
 		-- Session
-		use { 'Shatur/neovim-session-manager',
+		-- use { 'Shatur/neovim-session-manager',
+		-- 	config = function()
+		-- 		require('config.neovim-session-manager')
+		-- 	end
+		-- }
+		-- Lua
+		use {
+			'rmagatti/auto-session',
 			config = function()
-				require('config.neovim-session-manager')
+				require("config.auto-session")
 			end
 		}
+		-- use({
+		-- 	"folke/persistence.nvim",
+		-- 	event = "BufReadPre", -- this will only start session saving when an actual file was opened
+		-- 	module = "persistence",
+		-- 	config = function()
+		-- 		require("persistence").setup()
+		-- 	end,
+		-- })
+
 
 		-- 文件查找
 		use { 'nvim-telescope/telescope-ui-select.nvim' }
