@@ -50,11 +50,11 @@ ts.setup({
 		}
 	},
 
-	-- pickers = {
-	-- 	find_files = {
-	-- 		theme = 'dropdown',
-	-- 	}
-	-- }
+	pickers = {
+		find_files = {
+			theme = 'ivy',
+		}
+	}
 })
 
 ts.load_extension('projects')
