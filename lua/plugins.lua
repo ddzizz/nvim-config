@@ -192,12 +192,18 @@ return require('packer').startup({
 			end
 		}
 
-		-- Session
-		-- use { 'Shatur/neovim-session-manager',
-		-- 	config = function()
-		-- 		require('config.neovim-session-manager')
-		-- 	end
+		-- Project
+		-- use {
+		-- 	'charludo/projectmgr.nvim',
+		-- 	rocks = { 'lsqlite3complete' },
 		-- }
+		--
+		-- Session
+		use { 'Shatur/neovim-session-manager',
+			config = function()
+				require('config.neovim-session-manager')
+			end
+		}
 		-- Lua
 		--[[
 		use {

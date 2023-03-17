@@ -34,9 +34,8 @@ ts.setup({
 		},
 	},
 	defaults = {
-		layout_config = {
-			vertical = { width = 0.8, },
-		},
+		layout_strategy = 'vertical',
+		layout_config = { height = 0.95 },
 		vimgrep_arguments = {
 			'rg',
 			'--color=never',
@@ -50,15 +49,15 @@ ts.setup({
 		}
 	},
 
-	pickers = {
-		find_files = {
-			theme = 'ivy',
-		}
-	}
+	-- pickers = {
+	-- 	find_files = {
+	-- 		theme = 'ivy',
+	-- 	}
+	-- }
 })
 
 -- ts.load_extension('projects')
--- ts.load_extension('ui-select')
+ts.load_extension('ui-select')
 ts.load_extension('fzf')
 -- ts.load_extension('file_browser')
 

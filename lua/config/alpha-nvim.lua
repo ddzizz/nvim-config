@@ -5,8 +5,7 @@ local pcall = pcall
 local vim = vim
 local icons = require('icons')
 local path_ok, plenary_path = pcall(require, "plenary.path")
-local session_utils = {}
--- local session_utils = require('session_manager.utils')
+local session_utils = require('session_manager.utils')
 local alpha = require("alpha")
 local dashboard = require("alpha.themes.dashboard")
 local has_project, project = pcall(require, "project_nvim")
@@ -428,7 +427,7 @@ local section_shotcuts = {
 				create_shortcut('', "e", "  New file", "<cmd>ene<CR>"),
 				create_shortcut('', "f", "  Find file", "<cmd>Telescope find_files<CR>"),
 				create_shortcut('', "r", "  Recently", "<cmd>Telescope oldfiles<CR>"),
-				create_shortcut('', "p", "  Projects", "<cmd>Telescope projects<CR>"),
+				-- create_shortcut('', "p", "  Projects", "<cmd>Telescope projects<CR>"),
 				create_shortcut('', "s", "  Sessions", "<cmd>SessionManager load_session<CR>"),
 			}
 		}
@@ -483,8 +482,8 @@ local config = {
 		section_header,
 		{ type = "padding", val = 1 },
 		section_shotcuts,
-		-- { type = "padding", val = 1 },
-		-- section_sessions,
+		{ type = "padding", val = 1 },
+		section_sessions,
 		-- { type = "padding", val = 1 },
 		-- section_projects,
 		{ type = "padding", val = 2 },
