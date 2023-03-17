@@ -5,19 +5,19 @@ local tst = require('telescope.themes')
 local noremap_n_slient = { noremap = true, silent = true }
 
 
-require("project_nvim").setup({
-	patterns = {
-		".git",
-		-- "_darcs",
-		-- ".hg",
-		-- ".bzr",
-		-- ".svn",
-		"Makefile",
-		"package.json",
-		"*.sln",
-		"go.mod",
-	}
-})
+-- require("project_nvim").setup({
+-- 	patterns = {
+-- 		".git",
+-- 		-- "_darcs",
+-- 		-- ".hg",
+-- 		-- ".bzr",
+-- 		-- ".svn",
+-- 		"Makefile",
+-- 		"package.json",
+-- 		"*.sln",
+-- 		"go.mod",
+-- 	}
+-- })
 
 
 ts.setup({
@@ -57,7 +57,7 @@ ts.setup({
 	}
 })
 
-ts.load_extension('projects')
+-- ts.load_extension('projects')
 -- ts.load_extension('ui-select')
 ts.load_extension('fzf')
 -- ts.load_extension('file_browser')

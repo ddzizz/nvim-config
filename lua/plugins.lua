@@ -89,12 +89,14 @@ return require('packer').startup({
 		use 'nvim-tree/nvim-web-devicons'
 
 		-- git
+		--[[
 		use {
 			'lewis6991/gitsigns.nvim',
 			config = function()
 				require('config.gitsigns')
 			end
 		}
+		]]
 
 		-- 启动屏
 		-- use {
@@ -197,12 +199,14 @@ return require('packer').startup({
 		-- 	end
 		-- }
 		-- Lua
+		--[[
 		use {
 			'rmagatti/auto-session',
 			config = function()
 				require("config.auto-session")
 			end
 		}
+		]]
 		-- use({
 		-- 	"folke/persistence.nvim",
 		-- 	event = "BufReadPre", -- this will only start session saving when an actual file was opened
@@ -216,12 +220,14 @@ return require('packer').startup({
 		-- 文件查找
 		use { 'nvim-telescope/telescope-ui-select.nvim' }
 		-- use { 'nvim-telescope/telescope-project.nvim' }
+		--[[
 		use {
 			"ahmedkhalf/project.nvim",
 			config = function()
 				require('project_nvim').setup()
 			end
 		}
+		]]
 		use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 		--[[ use {
 			"nvim-telescope/telescope-file-browser.nvim",
