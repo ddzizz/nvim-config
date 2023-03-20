@@ -37,9 +37,10 @@ end
 
 neotree.setup({
 	close_if_last_window = true,
-	-- window = {
-	-- 	width = 30,
-	-- },
+	window = {
+		position = "float",
+		width = 60,
+	},
 	buffers = {
 		follow_current_file = true,
 	},
@@ -58,7 +59,6 @@ neotree.setup({
 		},
 		hijack_netrw_behavior = "disabled",
 		window = {
-			position = "float",
 			mappings = {
 				["o"] = "system_open",
 				["O"] = "wt_open",
@@ -109,7 +109,7 @@ neotree.setup({
 				-- require("neo-tree.sources.filesystem").reset_search(state)
 			end
 		},
-	}
+	},
 })
 vim.api.nvim_set_keymap("n", "<C-t>", ":Neotree reveal_force_cwd<CR>", noremap_n_slient)
 vim.api.nvim_set_keymap("n", "<C-g>", ":Neotree git_status<CR>", noremap_n_slient)
