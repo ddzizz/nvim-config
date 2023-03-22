@@ -300,6 +300,20 @@ return require('packer').startup({
 			end,
 		}
 
+		-- LSP美化
+		use({
+			"glepnir/lspsaga.nvim",
+			branch = "main",
+			config = function()
+				require("config.lspsaga")
+			end,
+			requires = {
+				{ "nvim-tree/nvim-web-devicons" },
+				--Please make sure you install markdown and markdown_inline parser
+				{ "nvim-treesitter/nvim-treesitter" }
+			}
+		})
+
 		-- DAP
 		use 'mfussenegger/nvim-dap'
 		use {
@@ -411,6 +425,8 @@ return require('packer').startup({
 		use "olimorris/onedarkpro.nvim"
 		use 'AlexvZyl/nordic.nvim'
 		use({ 'projekt0n/github-nvim-theme', tag = 'v0.0.7' })
+		use { "catppuccin/nvim", as = "catppuccin" }
+		use 'shaunsingh/nord.nvim'
 	end,
 	-- Packer设置
 	config = {
