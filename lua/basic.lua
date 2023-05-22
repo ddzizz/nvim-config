@@ -92,3 +92,6 @@ vim.g.loaded_netrwPlugin = 1
 --set inccommand=split
 --set title
 --set ttimeoutlen=0
+
+-- 字体
+vim.o.guifont = "CaskaydiaCove NF:h13"

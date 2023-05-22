@@ -1,7 +1,11 @@
-require("nvim-autopairs").setup {}
-
+local npairs = require("nvim-autopairs")
+--You can use treesitter to check for a pair.
+local Rule = require('nvim-autopairs.rule')
 local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 local cmp = require('cmp')
+
+-- npairs.setup {}
+
 cmp.event:off(
   'confirm_done',
   cmp_autopairs.on_confirm_done()
@@ -11,9 +15,6 @@ cmp.event:on(
   cmp_autopairs.on_confirm_done()
 )
 
---You can use treesitter to check for a pair.
-local npairs = require("nvim-autopairs")
-local Rule = require('nvim-autopairs.rule')
 
 npairs.setup({
     check_ts = true,

@@ -6,8 +6,9 @@ local noremap_n_slient = { noremap = true, silent = true }
 saga.setup({})
 
 keymap("n", "gh", "<cmd>Lspsaga hover_doc<CR>", noremap_n_slient)
-keymap("n", "gd", "<cmd>Lspsaga peek_definition<CR>", noremap_n_slient)
-keymap("n", "gD", "<cmd>Lspsaga peek_type_definition<CR>", noremap_n_slient)
+keymap("n", "gd", "<cmd>Lspsaga goto_definition<CR>", noremap_n_slient)
+keymap("n", "gp", "<cmd>Lspsaga peek_definition<CR>", noremap_n_slient)
+keymap("n", "gP", "<cmd>Lspsaga peek_type_definition<CR>", noremap_n_slient)
 -- keymap("n", "gr", "<cmd>Lspsaga rename<CR>", noremap_n_slient)
 -- Show line diagnostics
 -- You can pass argument ++unfocus to
