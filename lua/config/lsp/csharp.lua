@@ -41,7 +41,10 @@ function mt.init(cfg)
 
 		-- configs form lsp
 		capabilities = cfg.capabilities,
-		on_attach = cfg.on_attach,
+		on_attach = function(client, bufnr)
+			client.server_capabilities.semanticTokensProvider = nil
+			cfg.on_attach(client, bufnr)
+		end
 	}
 end
 
