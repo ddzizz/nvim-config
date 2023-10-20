@@ -1,8 +1,8 @@
 local vim = vim
 -- vim.cmd("colorscheme github_dark")
 -- vim.cmd("colorscheme nordic")
-vim.print(vim.g.vscode)
-if not vim.g.vscode then
+if vim.g.vscode then
+else
 	vim.cmd("colorscheme onedark")
 end
 -- vim.cmd("colorscheme tokyonight")
