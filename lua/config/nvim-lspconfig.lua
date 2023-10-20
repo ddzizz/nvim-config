@@ -40,6 +40,8 @@ local lsp_flags = {
 	debounce_text_changes = 150,
 }
 
+vim.lsp.set_log_level("ERROR")
+
 
 -- Set up lspconfig.
 -- local nvim_lsp = require('lspconfig')
@@ -59,7 +61,13 @@ for _, svr in ipairs(servers) do
 end
 ]]
 
-local cfgs = { 'lua', 'go', 'csharp', 'yaml' }
+local cfgs = {
+	'lua',
+	'go',
+	-- 'csharp_ls',
+	'omnisharp',
+	'yaml',
+}
 for _, cfg in ipairs(cfgs) do
 	require('config.lsp.' .. cfg).init({
 		on_attach = on_attach,

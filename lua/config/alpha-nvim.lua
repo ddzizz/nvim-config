@@ -1,3 +1,4 @@
+local mt = {}
 local os = os
 local tostring = tostring
 local string = string
@@ -439,7 +440,7 @@ local section_shotcuts = {
 }
 
 local function get_info()
-	local total_plugins = #vim.tbl_keys(_G.packer_plugins)
+	-- local total_plugins = #vim.tbl_keys(_G.packer_plugins)
 	local weeks = { "太阳星", "荧惑星", "辰星", "岁星", "太白星", "镇星", "太阴星" }
 	-- local datetime = os.date(" %Y-%m-%d   %A")
 	local datetime = os.date(" %Y-%m-%d")
@@ -448,7 +449,7 @@ local function get_info()
 	local nvim_version_info = "   v" .. version.major .. "." .. version.minor .. "." .. version.patch
 	return icons.ui.calendar ..
 		datetime ..
-		"  " .. icons.ui.calendar_minus_o .. " " .. weeks[wday] .. "   " .. total_plugins .. " plugins" .. nvim_version_info
+		"  " .. icons.ui.calendar_minus_o .. " " .. weeks[wday] .. "   " .. nvim_version_info
 end
 
 local section_info = {
@@ -500,7 +501,7 @@ local config = {
 }
 
 
-alpha.setup(config)
+-- alpha.setup(config)
 -- alpha.setup(dashboard.opts)
 
 -- Disable folding on alpha buffer
@@ -510,5 +511,5 @@ alpha.setup(config)
 --
 
 return {
-	open_project = open_project,
+	config = config,
 }

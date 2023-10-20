@@ -1,7 +1,7 @@
 local vim = vim
 local ts = require('telescope')
 local utils = require('telescope.utils')
-local tst = require('telescope.themes')
+-- local tst = require('telescope.themes')
 local noremap_n_slient = { noremap = true, silent = true }
 
 
