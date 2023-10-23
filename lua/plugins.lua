@@ -16,8 +16,8 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- if not vim.g.vscode then
-return require('lazy').setup({
+if not vim.g.vscode then
+	return require('lazy').setup({
 		-- 启动加速
 		-- { 'lewis6991/impatient.nvim' },
 
@@ -406,50 +406,50 @@ return require('lazy').setup({
 		'projekt0n/github-nvim-theme',
 		 'shaunsingh/nord.nvim',
 	})
--- else
-	-- require('lazy').setup({
-	-- 	-- .重复上一次的操作
-	-- 	'tpope/vim-repeat',
-	-- 	-- vim必备,快速操作包围符号
-	-- 	'tpope/vim-surround',
-	--
-	-- 	-- 对齐
-	-- 	'junegunn/vim-easy-align',
-	--
-	-- 	-- 快速移动
-	-- 	{
-	-- 		'ggandor/leap.nvim',
-	-- 		config = function()
-	-- 			require('leap').add_default_mappings()
-	-- 		end
-	-- 	},
-	-- 	{
-	-- 		'ggandor/flit.nvim',
-	-- 		config = function()
-	-- 			require('flit').setup {
-	-- 				keys = { f = 'f', F = 'F', t = 't', T = 'T' },
-	-- 				-- A string like "nv", "nvo", "o", etc.
-	-- 				labeled_modes = "v",
-	-- 				multiline = true,
-	-- 				-- Like `leap`s similar argument (call-specific overrides).
-	-- 				-- E.g.: opts = { equivalence_classes = {} }
-	-- 				opts = {}
-	-- 			}
-	-- 		end
-	-- 	},
-	--
-	-- 	-- 辅助库
-	-- 	{ 'nvim-lua/plenary.nvim' },
-	--
-	-- 	-- 注释
-	-- 	{
-	-- 		'numToStr/Comment.nvim',
-	-- 		config = function()
-	-- 			require('config.Comment')
-	-- 		end
-	-- 	},
-	--
-	-- 	-- 编码辅助
-	-- 	{ 'mg979/vim-visual-multi', branch = 'master' },
-	-- })
--- end
+else
+	require('lazy').setup({
+		-- .重复上一次的操作
+		'tpope/vim-repeat',
+		-- vim必备,快速操作包围符号
+		'tpope/vim-surround',
+
+		-- 对齐
+		'junegunn/vim-easy-align',
+
+		-- 快速移动
+		{
+			'ggandor/leap.nvim',
+			config = function()
+				require('leap').add_default_mappings()
+			end
+		},
+		{
+			'ggandor/flit.nvim',
+			config = function()
+				require('flit').setup {
+					keys = { f = 'f', F = 'F', t = 't', T = 'T' },
+					-- A string like "nv", "nvo", "o", etc.
+					labeled_modes = "v",
+					multiline = true,
+					-- Like `leap`s similar argument (call-specific overrides).
+					-- E.g.: opts = { equivalence_classes = {} }
+					opts = {}
+				}
+			end
+		},
+
+		-- 辅助库
+		{ 'nvim-lua/plenary.nvim' },
+
+		-- 注释
+		{
+			'numToStr/Comment.nvim',
+			config = function()
+				require('config.Comment')
+			end
+		},
+
+		-- 编码辅助
+		{ 'mg979/vim-visual-multi', branch = 'master' },
+	})
+end
