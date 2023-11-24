@@ -65,7 +65,7 @@ local cfgs = {
 	'lua',
 	'go',
 	-- 'csharp_ls',
-	'omnisharp',
+	-- 'omnisharp',
 	'yaml',
 }
 for _, cfg in ipairs(cfgs) do

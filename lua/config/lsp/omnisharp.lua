@@ -7,10 +7,11 @@ local util = require("lspconfig.util")
 
 function mt.init(cfg)
 	lspconfig.omnisharp.setup {
-		cmd = { "omnisharp.exe"  },
+		cmd = { "C:/Softwares/Developer/omnisharp-mono/omnisharp.exe", '--languageserver', '--hostPID', tostring(vim.fn.getpid()) },
+		-- root_dir = util.root_pattern("*.sln", "*.csproj"),
 		-- root_dir = util.root_pattern('*.sln', '*.csproj'),
 		-- filetypes = { 'cs' },
-		use_mono = true,
+		-- use_mono = true,
 		-- omnisharp = {
 		-- 	useModernNet = false,
 		-- },

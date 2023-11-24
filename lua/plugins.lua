@@ -142,13 +142,15 @@ if not vim.g.vscode then
 		 { 'nvim-lua/plenary.nvim' },
 
 		-- 文件树
-		--[[  {
-			'nvim-tree/nvim-tree.lua',
-			dependencies = { 'nvim-tree/nvim-web-devicons' },
-			config = function()
-				require('config.nvim-tree')
-			end
-		} ]]
+		-- {
+		-- 	'nvim-tree/nvim-tree.lua',
+		-- 	version = "*",
+		-- 	lazy = false,
+		-- 	dependencies = { 'nvim-tree/nvim-web-devicons' },
+		-- 	config = function()
+		-- 		require('config.nvim-tree')
+		-- 	end
+		-- },
 
 		 {
 			"nvim-neo-tree/neo-tree.nvim",
@@ -162,7 +164,7 @@ if not vim.g.vscode then
 				require('config.neo-tree')
 			end
 		},
-
+		--
 		-- 注释
 		 {
 			'numToStr/Comment.nvim',
@@ -362,16 +364,13 @@ if not vim.g.vscode then
 		"ray-x/lsp_signature.nvim",
 
 		-- Highlight
-		--  {
-		-- 	'nvim-treesitter/nvim-treesitter',
-		-- 	run = function()
-		-- 		local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
-		-- 		ts_update()
-		-- 	end,
-		-- 	config = function()
-		-- 		require('config.nvim-treesitter')
-		-- 	end
-		-- }
+		 {
+			"nvim-treesitter/nvim-treesitter",
+			build = ":TSUpdate",
+			config = function()
+				require('config.nvim-treesitter')
+			end
+		},
 		--
 		-- 高亮所有与光标所在位置的相同的单词
 		 'RRethy/vim-illuminate',

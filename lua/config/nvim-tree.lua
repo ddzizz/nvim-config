@@ -4,17 +4,27 @@ local noremap_n_slient = { noremap = true, silent = true }
 require("nvim-tree").setup({
 	view = {
 		width = 40,
-		-- float = {
-		-- 	enable = true,
-		-- },
+		float = {
+			enable = true,
+			open_win_config = {
+				width = 40,
+				height = 40,
+			},
+		},
 	},
-	sync_root_with_cwd = true,
-	respect_buf_cwd = true,
-	actions = {
-		open_file = {
-			quit_on_open = true,
-		}
+	git = {
+		enable = true,
 	},
+	filters = {
+		git_ignored = true,
+	},
+	-- sync_root_with_cwd = true,
+	-- respect_buf_cwd = true,
+	-- actions = {
+	-- 	open_file = {
+	-- 		quit_on_open = true,
+	-- 	}
+	-- },
 	-- update_focused_file = {
 	-- 	enable = true,
 	-- 	update_root = true,
@@ -56,4 +66,4 @@ local function open_nvim_tree(data)
 	]]
 end
 
-vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
+-- vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
