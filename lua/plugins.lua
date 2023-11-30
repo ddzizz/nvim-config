@@ -20,6 +20,11 @@ if not vim.g.vscode then
 	return require('lazy').setup({
 		-- 启动加速
 		-- { 'lewis6991/impatient.nvim' },
+		-- 半透明
+		{
+			'xiyaowong/transparent.nvim',
+			lazy = false,
+		},
 
 		-- vim必备,快速操作包围符号
 		 'tpope/vim-repeat',
@@ -142,28 +147,28 @@ if not vim.g.vscode then
 		 { 'nvim-lua/plenary.nvim' },
 
 		-- 文件树
-		-- {
-		-- 	'nvim-tree/nvim-tree.lua',
-		-- 	version = "*",
-		-- 	lazy = false,
-		-- 	dependencies = { 'nvim-tree/nvim-web-devicons' },
-		-- 	config = function()
-		-- 		require('config.nvim-tree')
-		-- 	end
-		-- },
-
-		 {
-			"nvim-neo-tree/neo-tree.nvim",
-			branch = "v3.x",
-			dependencies = {
-				"nvim-lua/plenary.nvim",
-				"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
-				"MunifTanjim/nui.nvim",
-			},
+		{
+			'nvim-tree/nvim-tree.lua',
+			version = "*",
+			lazy = false,
+			dependencies = { 'nvim-tree/nvim-web-devicons' },
 			config = function()
-				require('config.neo-tree')
+				require('config.nvim-tree')
 			end
 		},
+
+		--  {
+		-- 	"nvim-neo-tree/neo-tree.nvim",
+		-- 	branch = "v3.x",
+		-- 	dependencies = {
+		-- 		"nvim-lua/plenary.nvim",
+		-- 		"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+		-- 		"MunifTanjim/nui.nvim",
+		-- 	},
+		-- 	config = function()
+		-- 		require('config.neo-tree')
+		-- 	end
+		-- },
 		--
 		-- 注释
 		 {
@@ -399,7 +404,12 @@ if not vim.g.vscode then
 			end
 		}
 		]]
-		 'folke/tokyonight.nvim',
+		 {
+			'folke/tokyonight.nvim',
+			config = function()
+				require("tokyonight").setup { transparent = vim.g.transparent_enabled }
+			end
+		},
 		 "olimorris/onedarkpro.nvim",
 		 'AlexvZyl/nordic.nvim',
 		'projekt0n/github-nvim-theme',
