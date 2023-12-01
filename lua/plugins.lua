@@ -404,16 +404,41 @@ if not vim.g.vscode then
 			end
 		}
 		]]
-		 {
-			'folke/tokyonight.nvim',
-			config = function()
-				require("tokyonight").setup { transparent = vim.g.transparent_enabled }
-			end
+		{
+			"catppuccin/nvim",
+			name = "catppuccin",
+			priority = 1000,
+			-- config = function()
+			-- 	require("catppuccin").setup({
+			-- 		transparent_background = true,
+			-- 	})
+			-- end
 		},
-		 "olimorris/onedarkpro.nvim",
-		 'AlexvZyl/nordic.nvim',
+		{
+			'folke/tokyonight.nvim',
+			-- config = function()
+			-- 	require("tokyonight").setup({
+			-- 		style = 'night',
+			-- 		transparent = true,
+			-- 		dim_inactive = false,
+			-- 		terminal_colors = true,
+			-- 		styles = {
+			-- 			comments = 'NONE',
+			-- 			functions = 'NONE',
+			-- 			keywords = 'NONE',
+			-- 			strings = 'NONE',
+			-- 			variables = 'NONE',
+			-- 			sidebars = 'transparent',
+			-- 			floats = 'transparent'
+			-- 		},
+			-- 	})
+			-- end
+		},
+		"olimorris/onedarkpro.nvim",
+		'AlexvZyl/nordic.nvim',
 		'projekt0n/github-nvim-theme',
-		 'shaunsingh/nord.nvim',
+		'shaunsingh/nord.nvim',
+		"tiagovla/tokyodark.nvim",
 	})
 else
 	require('lazy').setup({
