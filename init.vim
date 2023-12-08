@@ -1,6 +1,12 @@
 
 
 lua require('basic')
+
+let &shell = 'nu'
+let &shellcmdflag = '-c'
+let &shellquote = ""
+let &shellxquote = ""
+
 lua require('plugins')
 
 lua require('theme')
