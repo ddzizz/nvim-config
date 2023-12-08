@@ -332,7 +332,9 @@ if not vim.g.vscode then
 		{
 			"akinsho/toggleterm.nvim",
 			version = '*',
-			config = true
+			config = function()
+				require("config.toggleterm")
+			end,
 		},
 
 		-- 自动补全
