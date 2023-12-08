@@ -26,7 +26,11 @@ function mt.init(cfg)
 			["textDocument/definition"] = require('csharpls_extended').handler,
 		},
 		cmd = { 'csharp-ls' },
-		root_dir = util.root_pattern('*.sln', '*.csproj'),
+		root_dir = function(startpath)
+			return lspconfig.util.root_pattern("*.sln")(startpath)
+				or lspconfig.util.root_pattern("*.csproj")(startpath)
+				or lspconfig.util.root_pattern(".git")(startpath)
+		end,
 		filetypes = { 'cs' },
 		init_options = {
 			AutomaticWorkspaceInit = true,

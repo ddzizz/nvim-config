@@ -64,7 +64,7 @@ end
 local cfgs = {
 	'lua',
 	'go',
-	-- 'csharp_ls',
+	'csharp_ls',
 	-- 'omnisharp',
 	'yaml',
 }

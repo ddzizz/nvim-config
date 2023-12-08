@@ -120,7 +120,7 @@ if not vim.g.vscode then
 		-- Buffer栏
 		 {
 			'akinsho/bufferline.nvim',
-			tag = "*",
+			version = "*",
 			dependencies = 'nvim-tree/nvim-web-devicons',
 			config = function()
 				require('config.bufferline')
@@ -329,9 +329,11 @@ if not vim.g.vscode then
 		]]
 
 		-- 终端
-		--[[  { "akinsho/toggleterm.nvim", tag = '*', config = function()
-			require("config.toggleterm")
-		end } ]]
+		{
+			"akinsho/toggleterm.nvim",
+			version = '*',
+			config = true
+		},
 
 		-- 自动补全
 		 { 'hrsh7th/cmp-nvim-lsp' },
@@ -346,19 +348,21 @@ if not vim.g.vscode then
 		},
 
 		-- snippets
+		'honza/vim-snippets',
+		'dcampos/nvim-snippy',
+		'dcampos/cmp-snippy',
+
 		--  'hrsh7th/cmp-vsnip' -- { name = 'vsnip' }
 		--  'hrsh7th/vim-vsnip'
-		{
-			"L3MON4D3/LuaSnip",
-			-- follow latest release.
-			-- tag = "v<CurrentMajor>.*",
-			-- install jsregexp (optional!:).
-			build = "mingw32-make install_jsregexp",
-			config = function()
-				require('luasnip.loaders.from_vscode').lazy_load()
-			end
-		},
-		 'saadparwaiz1/cmp_luasnip',
+		-- {
+		-- 	"L3MON4D3/LuaSnip",
+		-- 	version = "v2.*",
+		-- 	-- follow latest release.
+		-- 	-- tag = "v<CurrentMajor>.*",
+		-- 	-- install jsregexp (optional!:).
+		-- 	build = "mingw32-make install_jsregexp",
+		-- },
+		 -- 'saadparwaiz1/cmp_luasnip',
 
 		-- 非常强大包含了大部分常用语言的代码段
 		 'rafamadriz/friendly-snippets',
