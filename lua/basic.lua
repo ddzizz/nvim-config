@@ -95,3 +95,6 @@ vim.g.loaded_netrwPlugin = 1
 
 -- 字体
 vim.o.guifont = "CaskaydiaCove NF:h13"
+
+-- Neovide
+vim.g.neovide_transparency = 0.9
