@@ -11,7 +11,11 @@ require("bufferline").setup({
 			text = "File Explorer",
 			highlight = "Directory",
 			text_align = "left"
-		} }
+		} },
+		indicator = {
+			style = 'underline',
+		},
+        separator_style = "thin",
 	}
 })
 

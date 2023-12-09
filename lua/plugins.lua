@@ -24,6 +24,10 @@ if not vim.g.vscode then
 		{
 			'xiyaowong/transparent.nvim',
 			lazy = false,
+			config = function ()
+				require('transparent').clear_prefix('BufferLine')
+				-- require('transparent').clear_prefix('lualine')
+			end
 		},
 
 		-- vim必备,快速操作包围符号
