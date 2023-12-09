@@ -12,11 +12,17 @@ require("bufferline").setup({
 			highlight = "Directory",
 			text_align = "left"
 		} },
-		indicator = {
-			style = 'underline',
+		-- indicator = {
+		-- 	style = 'underline',
+		-- },
+        -- separator_style = "thick",
+	},
+	highlights = {
+		indicator_selected = {
+			fg = "#FFA066",
+			bg = "#FFA066",
 		},
-        separator_style = "thin",
-	}
+	},
 })
 
 -- bufferline 左右Tab切换
