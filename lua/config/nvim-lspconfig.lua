@@ -67,7 +67,9 @@ local cfgs = {
 	'lua',
 	'go',
 	'csharp_ls',
+	'serve_d',
 	-- 'omnisharp',
+	'zls',
 	'yaml',
 }
 
