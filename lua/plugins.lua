@@ -40,11 +40,11 @@ if not vim.g.vscode then
 
 		-- 自动添加括号
 		-- 'rstacruz/vim-closer'
-		{
-			"windwp/nvim-autopairs",
-			event = "InsertEnter",
-			opts = {} -- this is equalent to setup({}) function
-		},
+		-- {
+		-- 	"windwp/nvim-autopairs",
+		-- 	event = "InsertEnter",
+		-- 	opts = {} -- this is equalent to setup({}) function
+		-- },
 
 		-- 快速移动
 		{
@@ -105,7 +105,7 @@ if not vim.g.vscode then
 		-- 状态栏
 		 {
 			'nvim-lualine/lualine.nvim',
-			dependencies = { 'kyazdani42/nvim-web-devicons', opt = true },
+			dependencies = { 'nvim-tree/nvim-web-devicons', opt = true },
 			config = function()
 				require('config.lualine')
 			end
@@ -224,7 +224,7 @@ if not vim.g.vscode then
 			end
 		}
 		]]
-		 { 'nvim-telescope/telescope-fzf-native.nvim', build = 'mingw32-make' },
+		 { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
 		--[[  {
 			"nvim-telescope/telescope-file-browser.nvim",
 			dependencies = {
@@ -237,7 +237,7 @@ if not vim.g.vscode then
 			tag = '0.1.3',
 			dependencies = {
 				{ 'nvim-lua/plenary.nvim' },
-				{ "nvim-telescope/telescope-fzf-native.nvim", build = 'mingw32-make' }
+				{ "nvim-telescope/telescope-fzf-native.nvim", build = 'make' }
 			},
 			config = function()
 				require('config.telescope')
@@ -265,14 +265,14 @@ if not vim.g.vscode then
 		 { 'rcarriga/nvim-notify' },
 
 		-- nvim lua API
-		 {
-			"folke/neodev.nvim",
-			config = function()
-				require("neodev").setup({
-					-- add any options here, or leave empty to  the default settings
-				})
-			end
-		},
+		--  {
+		-- 	"folke/neodev.nvim",
+		-- 	config = function()
+		-- 		require("neodev").setup({
+		-- 			-- add any options here, or leave empty to  the default settings
+		-- 		})
+		-- 	end
+		-- },
 
 		-- vim命令菜单
 		 {
@@ -282,8 +282,17 @@ if not vim.g.vscode then
 			end,
 		},
 
+		-- COC
+		{
+			'neoclide/coc.nvim',
+			branch = 'release',
+			config = function()
+				require('config.coc')
+			end,
+		},
+
 		-- LSP
-		--
+		--[[
 		 { 'Decodetalkers/csharpls-extended-lsp.nvim' },
 		 {
 			'neovim/nvim-lspconfig',
@@ -291,8 +300,10 @@ if not vim.g.vscode then
 				require('config.nvim-lspconfig')
 			end,
 		},
+		]]
 
 		-- LSP美化
+		--[[
 		{
 			"glepnir/lspsaga.nvim",
 			branch = "main",
@@ -305,8 +316,10 @@ if not vim.g.vscode then
 				{ "nvim-treesitter/nvim-treesitter" }
 			}
 		},
+		]]
 
 		-- DAP
+		--[[
 		 'mfussenegger/nvim-dap',
 		 {
 			'leoluz/nvim-dap-go',
@@ -323,6 +336,7 @@ if not vim.g.vscode then
 				})
 			end
 		},
+		]]
 
 		--[[
 		-- Lint
@@ -342,21 +356,21 @@ if not vim.g.vscode then
 		},
 
 		-- 自动补全
-		 { 'hrsh7th/cmp-nvim-lsp' },
-		 { 'hrsh7th/cmp-buffer' },
-		 { 'hrsh7th/cmp-path' },
-		 { 'hrsh7th/cmp-cmdline' },
-		 {
-			'hrsh7th/nvim-cmp',
-			config = function()
-				require('config.nvim-cmp')
-			end,
-		},
+		-- { 'hrsh7th/cmp-nvim-lsp' },
+		--  { 'hrsh7th/cmp-buffer' },
+		--  { 'hrsh7th/cmp-path' },
+		--  { 'hrsh7th/cmp-cmdline' },
+		--  {
+		-- 	'hrsh7th/nvim-cmp',
+		-- 	config = function()
+		-- 		require('config.nvim-cmp')
+		-- 	end,
+		-- },
 
 		-- snippets
-		'honza/vim-snippets',
-		'dcampos/nvim-snippy',
-		'dcampos/cmp-snippy',
+		-- 'honza/vim-snippets',
+		-- 'dcampos/nvim-snippy',
+		-- 'dcampos/cmp-snippy',
 
 		--  'hrsh7th/cmp-vsnip' -- { name = 'vsnip' }
 		--  'hrsh7th/vim-vsnip'
@@ -371,12 +385,12 @@ if not vim.g.vscode then
 		 -- 'saadparwaiz1/cmp_luasnip',
 
 		-- 非常强大包含了大部分常用语言的代码段
-		 'rafamadriz/friendly-snippets',
+		 -- 'rafamadriz/friendly-snippets',
 		-- 是在代码提示中，显示分类的小图标支持
-		 'onsails/lspkind-nvim',
+		-- 'onsails/lspkind-nvim',
 
 		-- 显示自动补全签名
-		"ray-x/lsp_signature.nvim",
+		-- "ray-x/lsp_signature.nvim",
 
 		-- Highlight
 		 {
