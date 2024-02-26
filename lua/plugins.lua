@@ -25,16 +25,17 @@ if not vim.g.vscode then
 			'xiyaowong/transparent.nvim',
 			lazy = false,
 			config = function ()
-				-- local transparent = require('transparent')
-				-- transparent.setup({
-				-- 	extra_groups = {
-				-- 		"NormalFloat",
-				-- 		"NvimTreeNormal"
-				-- 	},
-				-- })
-				--
-				-- transparent.clear_prefix('BufferLine')
-				-- transparent.clear_prefix('lualine')
+				local transparent = require('transparent')
+				transparent.setup({
+					extra_groups = {
+						"NormalFloat",
+						"NvimTreeNormal",
+						"FloatBorder"
+					},
+				})
+
+				transparent.clear_prefix('BufferLine')
+				transparent.clear_prefix('lualine')
 			end
 		},
 
@@ -222,33 +223,43 @@ if not vim.g.vscode then
 
 
 		-- 文件查找
-		 { 'nvim-telescope/telescope-ui-select.nvim' },
-		--  { 'nvim-telescope/telescope-project.nvim' }
-		--[[
-		 {
-			"ahmedkhalf/project.nvim",
+		--  { 'nvim-telescope/telescope-ui-select.nvim' },
+		-- --  { 'nvim-telescope/telescope-project.nvim' }
+		-- --[[
+		--  {
+		-- 	"ahmedkhalf/project.nvim",
+		-- 	config = function()
+		-- 		require('project_nvim').setup()
+		-- 	end
+		-- }
+		-- ]]
+		--  { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+		-- --[[  {
+		-- 	"nvim-telescope/telescope-file-browser.nvim",
+		-- 	dependencies = {
+		-- 		"nvim-telescope/telescope.nvim",
+		-- 		"nvim-lua/plenary.nvim",
+		-- 	}
+		-- } ]]
+		--  {
+		-- 	'nvim-telescope/telescope.nvim',
+		-- 	tag = '0.1.3',
+		-- 	dependencies = {
+		-- 		{ 'nvim-lua/plenary.nvim' },
+		-- 		{ "nvim-telescope/telescope-fzf-native.nvim", build = 'make' }
+		-- 	},
+		-- 	config = function()
+		-- 		require('config.telescope')
+		-- 	end
+		-- },
+		{
+			"ibhagwan/fzf-lua",
+			-- optional for icon support
+			dependencies = { "nvim-tree/nvim-web-devicons" },
 			config = function()
-				require('project_nvim').setup()
-			end
-		}
-		]]
-		 { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
-		--[[  {
-			"nvim-telescope/telescope-file-browser.nvim",
-			dependencies = {
-				"nvim-telescope/telescope.nvim",
-				"nvim-lua/plenary.nvim",
-			}
-		} ]]
-		 {
-			'nvim-telescope/telescope.nvim',
-			tag = '0.1.3',
-			dependencies = {
-				{ 'nvim-lua/plenary.nvim' },
-				{ "nvim-telescope/telescope-fzf-native.nvim", build = 'make' }
-			},
-			config = function()
-				require('config.telescope')
+				require('config.fzflua')
+				-- calling `setup` is optional for customization
+				-- require("fzf-lua").setup({})
 			end
 		},
 
