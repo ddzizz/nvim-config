@@ -2,7 +2,13 @@ local vim = vim
 local fzflua = require('fzf-lua')
 local noremap_n_slient = { noremap = true, silent = true }
 
-fzflua.setup({})
+fzflua.setup({
+	winopts = {
+		preview = {
+			layout = 'veritcal'
+		}
+	}
+})
 
 -- vim.keymap.set('n', '<leader>fh', builtin.help_tags, noremap_n_slient)
 vim.keymap.set('n', '<C-p>', fzflua.files, noremap_n_slient)
