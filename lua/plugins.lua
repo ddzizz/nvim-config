@@ -29,13 +29,28 @@ if not vim.g.vscode then
 				transparent.setup({
 					extra_groups = {
 						"NormalFloat",
+						"FloatBorder",
 						"NvimTreeNormal",
-						"FloatBorder"
+						-- "NotifyBackground",
+						-- "NotifyERRORBody",
+						-- "NotifyWARNBody",
+						-- "NotifyINFOBody",
+						-- "NotifyDEBUGBody",
+						-- "NotifyTRACEBody",
 					},
 				})
 
 				transparent.clear_prefix('BufferLine')
 				transparent.clear_prefix('lualine')
+				transparent.clear_prefix('Notify')
+
+-- vim.api.nvim_set_hl(0, 'NotifyBackground', vim.api.nvim_get_hl_by_name('Normal', true))
+				--     hi default NotifyERRORBorder guifg=#8A1F1F
+    -- hi default NotifyWARNBorder guifg=#79491D
+    -- hi default NotifyINFOBorder guifg=#4F6752
+    -- hi default NotifyDEBUGBorder guifg=#8B8B8B
+    -- hi default NotifyTRACEBorder guifg=#4F3552
+    -- hi default NotifyERRORIcon guifg=#F70067
 			end
 		},
 
@@ -281,7 +296,31 @@ if not vim.g.vscode then
 		},
 
 		-- 弹窗提示
-		 { 'rcarriga/nvim-notify' },
+		{ 
+			'rcarriga/nvim-notify',
+			config = function ()
+				require("notify").setup({
+					background_colour = "#000000",
+				})
+			end
+		},
+
+		-- lazy.nvim
+		{
+			"folke/noice.nvim",
+			event = "VeryLazy",
+			opts = {
+				-- add any options here
+			},
+			dependencies = {
+				-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+				"MunifTanjim/nui.nvim",
+				-- OPTIONAL:
+				--   `nvim-notify` is only needed, if you want to use the notification view.
+				--   If not available, we use `mini` as the fallback
+				"rcarriga/nvim-notify",
+			}
+		},
 
 		-- nvim lua API
 		--  {
@@ -294,12 +333,12 @@ if not vim.g.vscode then
 		-- },
 
 		-- vim命令菜单
-		 {
-			'gelguy/wilder.nvim',
-			config = function()
-				require('config.wilder')
-			end,
-		},
+		--  {
+		-- 	'gelguy/wilder.nvim',
+		-- 	config = function()
+		-- 		require('config.wilder')
+		-- 	end,
+		-- },
 
 		-- COC
 		{
