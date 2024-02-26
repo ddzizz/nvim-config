@@ -1,17 +1,30 @@
 local vim = vim
 local noremap_n_slient = { noremap = true, silent = true }
 
-require("bufferline").setup({
+local bufferline = require("bufferline")
+bufferline.setup({
 	options = {
 		-- 使用 nvim 内置lsp
 		diagnostics = "nvim_lsp",
+		diagnostics_indicator = function(count, level)
+			local icon = level:match("error") and " " or ""
+			return " " .. icon .. count
+		end,
+		indicator = {
+			style = 'icon',
+		},
+        separator_style = { '', '' },
+		style_preset = {
+			bufferline.style_preset.no_italic,
+		},
+        -- separator_style = "slant" | "slope" | "thick" | "thin" | { 'any', 'any' },
 		-- 左侧让出 nvim-tree 的位置
-		offsets = { {
-			filetype = "NvimTree",
-			text = "File Explorer",
-			highlight = "Directory",
-			text_align = "left"
-		} },
+		-- offsets = { {
+		-- 	filetype = "NvimTree",
+		-- 	text = "File Explorer",
+		-- 	highlight = "Directory",
+		-- 	text_align = "left"
+		-- } },
 		-- indicator = {
 		-- 	style = 'underline',
 		-- },

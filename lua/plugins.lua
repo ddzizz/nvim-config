@@ -25,8 +25,16 @@ if not vim.g.vscode then
 			'xiyaowong/transparent.nvim',
 			lazy = false,
 			config = function ()
-				require('transparent').clear_prefix('BufferLine')
-				-- require('transparent').clear_prefix('lualine')
+				-- local transparent = require('transparent')
+				-- transparent.setup({
+				-- 	extra_groups = {
+				-- 		"NormalFloat",
+				-- 		"NvimTreeNormal"
+				-- 	},
+				-- })
+				--
+				-- transparent.clear_prefix('BufferLine')
+				-- transparent.clear_prefix('lualine')
 			end
 		},
 
@@ -426,10 +434,10 @@ if not vim.g.vscode then
 		},
 		{
 			'folke/tokyonight.nvim',
-			-- config = function()
-			-- 	require("tokyonight").setup({
-			-- 		style = 'night',
-			-- 		transparent = true,
+			config = function()
+				require("tokyonight").setup({
+					style = 'night',
+					transparent = true,
 			-- 		dim_inactive = false,
 			-- 		terminal_colors = true,
 			-- 		styles = {
@@ -441,14 +449,15 @@ if not vim.g.vscode then
 			-- 			sidebars = 'transparent',
 			-- 			floats = 'transparent'
 			-- 		},
-			-- 	})
-			-- end
+				})
+			end
 		},
 		"olimorris/onedarkpro.nvim",
 		'AlexvZyl/nordic.nvim',
 		'projekt0n/github-nvim-theme',
 		'shaunsingh/nord.nvim',
 		"tiagovla/tokyodark.nvim",
+		{ "miikanissi/modus-themes.nvim", priority = 1000 }
 	})
 else
 	require('lazy').setup({
