@@ -83,7 +83,7 @@ vim.o.showtabline = 2
 -- 使用增强状态栏插件后不再需要 vim 的模式提示
 vim.o.showmode = false
 -- 配置剪切板
-vim.opt.clipboard = "unnamed,unnamedplus"
+vim.opt.clipboard = "unnamedplus"
 -- 关闭netrw
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
