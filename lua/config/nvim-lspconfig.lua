@@ -66,10 +66,10 @@ end
 local cfgs = {
 	'lua',
 	'go',
-	'csharp_ls',
-	'serve_d',
+	-- 'csharp_ls',
+	-- 'serve_d',
 	-- 'omnisharp',
-	'zls',
+	-- 'zls',
 	'yaml',
 }
 

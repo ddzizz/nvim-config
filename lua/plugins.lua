@@ -323,14 +323,14 @@ if not vim.g.vscode then
 		},
 
 		-- nvim lua API
-		--  {
-		-- 	"folke/neodev.nvim",
-		-- 	config = function()
-		-- 		require("neodev").setup({
-		-- 			-- add any options here, or leave empty to  the default settings
-		-- 		})
-		-- 	end
-		-- },
+		 {
+			"folke/neodev.nvim",
+			config = function()
+				require("neodev").setup({
+					-- add any options here, or leave empty to  the default settings
+				})
+			end
+		},
 
 		-- vim命令菜单
 		--  {
@@ -341,29 +341,26 @@ if not vim.g.vscode then
 		-- },
 
 		-- COC
-		{
-			'neoclide/coc.nvim',
-			branch = 'release',
-			config = function()
-				require('config.coc')
-			end,
-		},
+		-- {
+		-- 	'neoclide/coc.nvim',
+		-- 	branch = 'release',
+		-- 	config = function()
+		-- 		require('config.coc')
+		-- 	end,
+		-- },
 
 		-- LSP
-		--[[
-		 { 'Decodetalkers/csharpls-extended-lsp.nvim' },
+		 -- { 'Decodetalkers/csharpls-extended-lsp.nvim' },
 		 {
 			'neovim/nvim-lspconfig',
-			config = function()
-				require('config.nvim-lspconfig')
-			end,
+			-- config = function()
+			-- 	require('config.nvim-lspconfig')
+			-- end,
 		},
-		]]
 
 		-- LSP美化
-		--[[
 		{
-			"glepnir/lspsaga.nvim",
+			'glepnir/lspsaga.nvim',
 			branch = "main",
 			config = function()
 				require("config.lspsaga")
@@ -374,7 +371,6 @@ if not vim.g.vscode then
 				{ "nvim-treesitter/nvim-treesitter" }
 			}
 		},
-		]]
 
 		-- DAP
 		--[[
@@ -413,17 +409,32 @@ if not vim.g.vscode then
 			end,
 		},
 
+
+		-- Mason
+		{
+			'williamboman/mason.nvim',
+			config = function ()
+				require("mason").setup()
+			end,
+		},
+		{
+			'williamboman/mason-lspconfig.nvim',
+			config = function ()
+				require("mason-lspconfig").setup()
+			end
+		},
+
 		-- 自动补全
-		-- { 'hrsh7th/cmp-nvim-lsp' },
-		--  { 'hrsh7th/cmp-buffer' },
-		--  { 'hrsh7th/cmp-path' },
-		--  { 'hrsh7th/cmp-cmdline' },
-		--  {
-		-- 	'hrsh7th/nvim-cmp',
-		-- 	config = function()
-		-- 		require('config.nvim-cmp')
-		-- 	end,
-		-- },
+		{ 'hrsh7th/cmp-nvim-lsp' },
+		{ 'hrsh7th/cmp-buffer' },
+		{ 'hrsh7th/cmp-path' },
+		{ 'hrsh7th/cmp-cmdline' },
+		{
+			'hrsh7th/nvim-cmp',
+			config = function()
+				require('config.nvim-cmp')
+			end,
+		},
 
 		-- snippets
 		-- 'honza/vim-snippets',
@@ -440,15 +451,15 @@ if not vim.g.vscode then
 		-- 	-- install jsregexp (optional!:).
 		-- 	build = "mingw32-make install_jsregexp",
 		-- },
-		 -- 'saadparwaiz1/cmp_luasnip',
+		 'saadparwaiz1/cmp_luasnip',
 
 		-- 非常强大包含了大部分常用语言的代码段
-		 -- 'rafamadriz/friendly-snippets',
+		 'rafamadriz/friendly-snippets',
 		-- 是在代码提示中，显示分类的小图标支持
-		-- 'onsails/lspkind-nvim',
+		'onsails/lspkind-nvim',
 
 		-- 显示自动补全签名
-		-- "ray-x/lsp_signature.nvim",
+		"ray-x/lsp_signature.nvim",
 
 		-- Highlight
 		 {
