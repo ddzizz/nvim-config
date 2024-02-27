@@ -74,9 +74,9 @@ local cfgs = {
 }
 
 
-for _, cfg in ipairs(cfgs) do
-	require('config.lsp.' .. cfg).init({
-		on_attach = on_attach,
-		capabilities = capabilities,
-	})
-end
+-- for _, cfg in ipairs(cfgs) do
+-- 	require('config.lsp.' .. cfg).init({
+-- 		on_attach = on_attach,
+-- 		capabilities = capabilities,
+-- 	})
+-- end
