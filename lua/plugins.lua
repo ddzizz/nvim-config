@@ -547,6 +547,10 @@ if not vim.g.vscode then
 		'shaunsingh/nord.nvim',
 		"tiagovla/tokyodark.nvim",
 		{ "miikanissi/modus-themes.nvim", priority = 1000 }
+	}, {
+		ui = {
+			border = "rounded",
+		},
 	})
 else
 	require('lazy').setup({
