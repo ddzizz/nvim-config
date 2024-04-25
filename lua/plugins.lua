@@ -146,7 +146,9 @@ if not vim.g.vscode then
 		-- })
 
 		-- Buffer栏
-		 {
+		{'ojroques/nvim-bufdel'},
+
+		{
 			'akinsho/bufferline.nvim',
 			version = "*",
 			dependencies = 'nvim-tree/nvim-web-devicons',
@@ -546,7 +548,18 @@ if not vim.g.vscode then
 		'projekt0n/github-nvim-theme',
 		'shaunsingh/nord.nvim',
 		"tiagovla/tokyodark.nvim",
-		{ "miikanissi/modus-themes.nvim", priority = 1000 }
+		{ "miikanissi/modus-themes.nvim", priority = 1000 },
+		{
+			'uloco/bluloco.nvim',
+			lazy = false,
+			priority = 1000,
+			dependencies = { 'rktjmp/lush.nvim' },
+			config = function()
+				-- your optional config goes here, see below.
+
+			end,
+		}
+
 	}, {
 		ui = {
 			border = "rounded",

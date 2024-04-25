@@ -2,6 +2,7 @@ local vim = vim
 local noremap_n_slient = { noremap = true, silent = true }
 
 local bufferline = require("bufferline")
+
 bufferline.setup({
 	options = {
 		-- 使用 nvim 内置lsp
@@ -41,6 +42,8 @@ bufferline.setup({
 -- bufferline 左右Tab切换
 vim.api.nvim_set_keymap("n", "<C-h>", ":BufferLineCyclePrev<CR>", noremap_n_slient)
 vim.api.nvim_set_keymap("n", "<C-l>", ":BufferLineCycleNext<CR>", noremap_n_slient)
+vim.api.nvim_set_keymap('n', '<C-w>', ":BufDel<CR>", noremap_n_slient)
+vim.api.nvim_set_keymap('n', '<leader>bo', ":BufferLineCloseOthers<CR>", noremap_n_slient)
 vim.api.nvim_set_keymap('n', '<leader>bl', ":BufferLineCloseLeft<CR>", noremap_n_slient)
 vim.api.nvim_set_keymap('n', '<leader>bh', ":BufferLineCloseRight<CR>", noremap_n_slient)
 vim.api.nvim_set_keymap('n', '<leader>bc', ":BufferLinePickClose<CR>", noremap_n_slient)
