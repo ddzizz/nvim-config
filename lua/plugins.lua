@@ -5,27 +5,27 @@
 local vim = vim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
-    lazypath,
-  })
+	vim.fn.system({
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"https://github.com/folke/lazy.nvim.git",
+		"--branch=stable", -- latest stable release
+		lazypath,
+	})
 end
 vim.opt.rtp:prepend(lazypath)
 
 if not vim.g.vscode then
-	return require('lazy').setup({
+	return require("lazy").setup({
 		-- 启动加速
 		-- { 'lewis6991/impatient.nvim' },
 		-- 半透明
 		{
-			'xiyaowong/transparent.nvim',
+			"xiyaowong/transparent.nvim",
 			lazy = false,
-			config = function ()
-				local transparent = require('transparent')
+			config = function()
+				local transparent = require("transparent")
 				transparent.setup({
 					extra_groups = {
 						"NormalFloat",
@@ -40,26 +40,26 @@ if not vim.g.vscode then
 					},
 				})
 
-				transparent.clear_prefix('BufferLine')
-				transparent.clear_prefix('lualine')
-				transparent.clear_prefix('Notify')
+				transparent.clear_prefix("BufferLine")
+				transparent.clear_prefix("lualine")
+				transparent.clear_prefix("Notify")
 
--- vim.api.nvim_set_hl(0, 'NotifyBackground', vim.api.nvim_get_hl_by_name('Normal', true))
+				-- vim.api.nvim_set_hl(0, 'NotifyBackground', vim.api.nvim_get_hl_by_name('Normal', true))
 				--     hi default NotifyERRORBorder guifg=#8A1F1F
-    -- hi default NotifyWARNBorder guifg=#79491D
-    -- hi default NotifyINFOBorder guifg=#4F6752
-    -- hi default NotifyDEBUGBorder guifg=#8B8B8B
-    -- hi default NotifyTRACEBorder guifg=#4F3552
-    -- hi default NotifyERRORIcon guifg=#F70067
-			end
+				-- hi default NotifyWARNBorder guifg=#79491D
+				-- hi default NotifyINFOBorder guifg=#4F6752
+				-- hi default NotifyDEBUGBorder guifg=#8B8B8B
+				-- hi default NotifyTRACEBorder guifg=#4F3552
+				-- hi default NotifyERRORIcon guifg=#F70067
+			end,
 		},
 
 		-- vim必备,快速操作包围符号
-		 'tpope/vim-repeat',
-		 'tpope/vim-surround',
+		"tpope/vim-repeat",
+		"tpope/vim-surround",
 
 		-- 对齐
-		 'junegunn/vim-easy-align',
+		"junegunn/vim-easy-align",
 		-- 'vim-autoformat/vim-autoformat'
 
 		-- 自动添加括号
@@ -72,32 +72,32 @@ if not vim.g.vscode then
 
 		-- 快速移动
 		{
-			'ggandor/leap.nvim',
+			"ggandor/leap.nvim",
 			config = function()
-				require('leap').add_default_mappings()
-			end
+				require("leap").add_default_mappings()
+			end,
 		},
 
 		{
-			'ggandor/flit.nvim',
+			"ggandor/flit.nvim",
 			config = function()
-				require('flit').setup {
-					keys = { f = 'f', F = 'F', t = 't', T = 'T' },
+				require("flit").setup({
+					keys = { f = "f", F = "F", t = "t", T = "T" },
 					-- A string like "nv", "nvo", "o", etc.
 					labeled_modes = "v",
 					multiline = true,
 					-- Like `leap`s similar argument (call-specific overrides).
 					-- E.g.: opts = { equivalence_classes = {} }
-					opts = {}
-				}
-			end
+					opts = {},
+				})
+			end,
 		},
 
 		-- 快速在括号之间移动
-		 { 'andymass/vim-matchup', event = 'VimEnter' },
+		{ "andymass/vim-matchup", event = "VimEnter" },
 
 		-- 图标
-		 'nvim-tree/nvim-web-devicons',
+		"nvim-tree/nvim-web-devicons",
 
 		-- git
 		--[[
@@ -118,21 +118,21 @@ if not vim.g.vscode then
 		-- 		require('config.dashboard-nvim')
 		-- 	end,
 		-- }
-		 {
-			'goolord/alpha-nvim',
-			dependencies = { 'nvim-tree/nvim-web-devicons' },
+		{
+			"goolord/alpha-nvim",
+			dependencies = { "nvim-tree/nvim-web-devicons" },
 			config = function()
-				require'alpha'.setup(require'config.alpha-nvim'.config)
-			end
+				require("alpha").setup(require("config.alpha-nvim").config)
+			end,
 		},
 
 		-- 状态栏
-		 {
-			'nvim-lualine/lualine.nvim',
-			dependencies = { 'nvim-tree/nvim-web-devicons', opt = true },
+		{
+			"nvim-lualine/lualine.nvim",
+			dependencies = { "nvim-tree/nvim-web-devicons", opt = true },
 			config = function()
-				require('config.lualine')
-			end
+				require("config.lualine")
+			end,
 		},
 		-- ({
 		-- 	'glepnir/galaxyline.nvim',
@@ -146,27 +146,27 @@ if not vim.g.vscode then
 		-- })
 
 		-- Buffer栏
-		{'ojroques/nvim-bufdel'},
+		{ "ojroques/nvim-bufdel" },
 
 		{
-			'akinsho/bufferline.nvim',
+			"akinsho/bufferline.nvim",
 			version = "*",
-			dependencies = 'nvim-tree/nvim-web-devicons',
+			dependencies = "nvim-tree/nvim-web-devicons",
 			config = function()
-				require('config.bufferline')
-			end
+				require("config.bufferline")
+			end,
 		},
 
 		-- 快捷键
-		 {
-			'folke/which-key.nvim',
+		{
+			"folke/which-key.nvim",
 			config = function()
-				require("which-key").setup {
+				require("which-key").setup({
 					-- your configuration comes here
 					-- or leave it empty to  the default settings
 					-- refer to the configuration section below
-				}
-			end
+				})
+			end,
 		},
 		-- ({
 		-- 	'mrjones2014/legendary.nvim',
@@ -174,17 +174,17 @@ if not vim.g.vscode then
 		-- 	-- dependencies = 'kkharji/sqlite.lua'
 		-- })
 		-- 辅助库
-		 { 'nvim-lua/plenary.nvim' },
+		{ "nvim-lua/plenary.nvim" },
 
 		-- 文件树
 		{
-			'nvim-tree/nvim-tree.lua',
+			"nvim-tree/nvim-tree.lua",
 			version = "*",
 			lazy = false,
-			dependencies = { 'nvim-tree/nvim-web-devicons' },
+			dependencies = { "nvim-tree/nvim-web-devicons" },
 			config = function()
-				require('config.nvim-tree')
-			end
+				require("config.nvim-tree")
+			end,
 		},
 
 		--  {
@@ -201,11 +201,11 @@ if not vim.g.vscode then
 		-- },
 		--
 		-- 注释
-		 {
-			'numToStr/Comment.nvim',
+		{
+			"numToStr/Comment.nvim",
 			config = function()
-				require('config.Comment')
-			end
+				require("config.Comment")
+			end,
 		},
 
 		-- Project
@@ -215,10 +215,11 @@ if not vim.g.vscode then
 		-- }
 		--
 		-- Session
-		 { 'Shatur/neovim-session-manager',
+		{
+			"Shatur/neovim-session-manager",
 			config = function()
-				require('config.neovim-session-manager')
-			end
+				require("config.neovim-session-manager")
+			end,
 		},
 		-- Lua
 		--[[
@@ -237,7 +238,6 @@ if not vim.g.vscode then
 		-- 		require("persistence").setup()
 		-- 	end,
 		-- })
-
 
 		-- 文件查找
 		--  { 'nvim-telescope/telescope-ui-select.nvim' },
@@ -274,37 +274,37 @@ if not vim.g.vscode then
 			-- optional for icon support
 			dependencies = { "nvim-tree/nvim-web-devicons" },
 			config = function()
-				require('config.fzflua')
+				require("config.fzflua")
 				-- calling `setup` is optional for customization
 				-- require("fzf-lua").setup({})
-			end
+			end,
 		},
 
 		-- 编码辅助
-		 { 'mg979/vim-visual-multi', branch = 'master' },
-		 'mbbill/undotree',
+		{ "mg979/vim-visual-multi", branch = "master" },
+		"mbbill/undotree",
 
 		-- 搜索和查看lsp符号，tags
-		 'liuchengxu/vista.vim',
+		"liuchengxu/vista.vim",
 
 		-- 正则搜索和替换
 		--  'brooth/far.vim'
-		 {
-			'windwp/nvim-spectre',
+		{
+			"windwp/nvim-spectre",
 			dependencies = { "nvim-lua/plenary.nvim" },
 			config = function()
-				require('config.nvim-spectre')
-			end
+				require("config.nvim-spectre")
+			end,
 		},
 
 		-- 弹窗提示
-		{ 
-			'rcarriga/nvim-notify',
-			config = function ()
+		{
+			"rcarriga/nvim-notify",
+			config = function()
 				require("notify").setup({
 					background_colour = "#000000",
 				})
-			end
+			end,
 		},
 
 		-- lazy.nvim
@@ -321,17 +321,17 @@ if not vim.g.vscode then
 			},
 			config = function()
 				require("config.noice")
-			end
+			end,
 		},
 
 		-- nvim lua API
-		 {
+		{
 			"folke/neodev.nvim",
 			config = function()
 				require("neodev").setup({
 					-- add any options here, or leave empty to  the default settings
 				})
-			end
+			end,
 		},
 
 		-- vim命令菜单
@@ -352,9 +352,9 @@ if not vim.g.vscode then
 		-- },
 
 		-- LSP
-		 -- { 'Decodetalkers/csharpls-extended-lsp.nvim' },
-		 {
-			'neovim/nvim-lspconfig',
+		-- { 'Decodetalkers/csharpls-extended-lsp.nvim' },
+		{
+			"neovim/nvim-lspconfig",
 			-- config = function()
 			-- 	require('config.nvim-lspconfig')
 			-- end,
@@ -362,7 +362,7 @@ if not vim.g.vscode then
 
 		-- LSP美化
 		{
-			'glepnir/lspsaga.nvim',
+			"glepnir/lspsaga.nvim",
 			branch = "main",
 			config = function()
 				require("config.lspsaga")
@@ -370,8 +370,8 @@ if not vim.g.vscode then
 			dependencies = {
 				{ "nvim-tree/nvim-web-devicons" },
 				--Please make sure you install markdown and markdown_inline parser
-				{ "nvim-treesitter/nvim-treesitter" }
-			}
+				{ "nvim-treesitter/nvim-treesitter" },
+			},
 		},
 
 		-- DAP
@@ -405,50 +405,52 @@ if not vim.g.vscode then
 		-- 终端
 		{
 			"akinsho/toggleterm.nvim",
-			version = '*',
+			version = "*",
 			config = function()
 				require("config.toggleterm")
 			end,
 		},
 
-
 		-- Mason
 		{
-			'williamboman/mason.nvim',
-			config = function ()
+			"williamboman/mason.nvim",
+			config = function()
 				require("mason").setup()
 			end,
 		},
 		{
-			'williamboman/mason-lspconfig.nvim',
-			config = function ()
-				require("config.mason-lspconfig")
-			end
-		},
-		{
-			'nvimtools/none-ls.nvim',
-		},
-		{
-			'jay-babu/mason-null-ls.nvim',
-			event = { "BufReadPre", "BufNewFile" },
-			dependencies = {
-				"williamboman/mason.nvim",
-				"nvimtools/none-ls.nvim",
-			},
+			"williamboman/mason-lspconfig.nvim",
 			config = function()
-			-- require("your.null-ls.config") -- require your null-ls config here (example below)
+				require("config.mason-lspconfig")
 			end,
 		},
+		{
+			"nvimtools/none-ls.nvim",
+			config = function()
+				require("config.null-ls")
+			end,
+		},
+		-- {
+		-- 	'jay-babu/mason-null-ls.nvim',
+		-- 	event = { "BufReadPre", "BufNewFile" },
+		-- 	dependencies = {
+		-- 		"williamboman/mason.nvim",
+		-- 		"nvimtools/none-ls.nvim",
+		-- 	},
+		-- 	config = function()
+		-- 	-- require("your.null-ls.config") -- require your null-ls config here (example below)
+		-- 	end,
+		-- },
 
 		-- 自动补全
-		{ 'hrsh7th/cmp-nvim-lsp' },
-		{ 'hrsh7th/cmp-buffer' },
-		{ 'hrsh7th/cmp-path' },
-		{ 'hrsh7th/cmp-cmdline' },
+		{ "hrsh7th/cmp-nvim-lsp" },
+		{ "hrsh7th/cmp-buffer" },
+		{ "hrsh7th/cmp-path" },
+		{ "hrsh7th/cmp-cmdline" },
 		{
-			'hrsh7th/nvim-cmp',
+			"hrsh7th/nvim-cmp",
 			config = function()
-				require('config.nvim-cmp')
+				require("config.nvim-cmp")
 			end,
 		},
 
@@ -467,36 +469,35 @@ if not vim.g.vscode then
 		-- 	-- install jsregexp (optional!:).
 		-- 	build = "mingw32-make install_jsregexp",
 		-- },
-		 'saadparwaiz1/cmp_luasnip',
+		"saadparwaiz1/cmp_luasnip",
 
 		-- 非常强大包含了大部分常用语言的代码段
-		 'rafamadriz/friendly-snippets',
+		"rafamadriz/friendly-snippets",
 		-- 是在代码提示中，显示分类的小图标支持
-		'onsails/lspkind-nvim',
+		"onsails/lspkind-nvim",
 
 		-- 显示自动补全签名
 		"ray-x/lsp_signature.nvim",
 
 		-- Highlight
-		 {
+		{
 			"nvim-treesitter/nvim-treesitter",
 			build = ":TSUpdate",
 			config = function()
-				require('config.nvim-treesitter')
-			end
+				require("config.nvim-treesitter")
+			end,
 		},
 		--
 		-- 高亮所有与光标所在位置的相同的单词
-		 'RRethy/vim-illuminate',
-
+		"RRethy/vim-illuminate",
 
 		-- 显示各种错误的详细列表
-		 {
+		{
 			"folke/trouble.nvim",
 			requires = "nvim-tree/nvim-web-devicons",
 			config = function()
-				require("trouble").setup {}
-			end
+				require("trouble").setup({})
+			end,
 		},
 
 		-- For golang
@@ -524,91 +525,89 @@ if not vim.g.vscode then
 			-- end
 		},
 		{
-			'folke/tokyonight.nvim',
+			"folke/tokyonight.nvim",
 			config = function()
 				require("tokyonight").setup({
-					style = 'night',
+					style = "night",
 					transparent = true,
-			-- 		dim_inactive = false,
-			-- 		terminal_colors = true,
-			-- 		styles = {
-			-- 			comments = 'NONE',
-			-- 			functions = 'NONE',
-			-- 			keywords = 'NONE',
-			-- 			strings = 'NONE',
-			-- 			variables = 'NONE',
-			-- 			sidebars = 'transparent',
-			-- 			floats = 'transparent'
-			-- 		},
+					-- 		dim_inactive = false,
+					-- 		terminal_colors = true,
+					-- 		styles = {
+					-- 			comments = 'NONE',
+					-- 			functions = 'NONE',
+					-- 			keywords = 'NONE',
+					-- 			strings = 'NONE',
+					-- 			variables = 'NONE',
+					-- 			sidebars = 'transparent',
+					-- 			floats = 'transparent'
+					-- 		},
 				})
-			end
+			end,
 		},
 		"olimorris/onedarkpro.nvim",
-		'AlexvZyl/nordic.nvim',
-		'projekt0n/github-nvim-theme',
-		'shaunsingh/nord.nvim',
+		"AlexvZyl/nordic.nvim",
+		"projekt0n/github-nvim-theme",
+		"shaunsingh/nord.nvim",
 		"tiagovla/tokyodark.nvim",
 		{ "miikanissi/modus-themes.nvim", priority = 1000 },
 		{
-			'uloco/bluloco.nvim',
+			"uloco/bluloco.nvim",
 			lazy = false,
 			priority = 1000,
-			dependencies = { 'rktjmp/lush.nvim' },
+			dependencies = { "rktjmp/lush.nvim" },
 			config = function()
 				-- your optional config goes here, see below.
-
 			end,
-		}
-
+		},
 	}, {
 		ui = {
 			border = "rounded",
 		},
 	})
 else
-	require('lazy').setup({
+	require("lazy").setup({
 		-- .重复上一次的操作
-		'tpope/vim-repeat',
+		"tpope/vim-repeat",
 		-- vim必备,快速操作包围符号
-		'tpope/vim-surround',
+		"tpope/vim-surround",
 
 		-- 对齐
-		'junegunn/vim-easy-align',
+		"junegunn/vim-easy-align",
 
 		-- 快速移动
 		{
-			'ggandor/leap.nvim',
+			"ggandor/leap.nvim",
 			config = function()
-				require('leap').add_default_mappings()
-			end
+				require("leap").add_default_mappings()
+			end,
 		},
 		{
-			'ggandor/flit.nvim',
+			"ggandor/flit.nvim",
 			config = function()
-				require('flit').setup {
-					keys = { f = 'f', F = 'F', t = 't', T = 'T' },
+				require("flit").setup({
+					keys = { f = "f", F = "F", t = "t", T = "T" },
 					-- A string like "nv", "nvo", "o", etc.
 					labeled_modes = "v",
 					multiline = true,
 					-- Like `leap`s similar argument (call-specific overrides).
 					-- E.g.: opts = { equivalence_classes = {} }
-					opts = {}
-				}
-			end
+					opts = {},
+				})
+			end,
 		},
 
 		-- 辅助库
-		{ 'nvim-lua/plenary.nvim' },
+		{ "nvim-lua/plenary.nvim" },
 
 		-- 注释
 		{
-			'numToStr/Comment.nvim',
+			"numToStr/Comment.nvim",
 			config = function()
-				require('config.Comment')
-			end
+				require("config.Comment")
+			end,
 		},
 
 		-- 编码辅助
-		{ 'mg979/vim-visual-multi', branch = 'master' },
+		{ "mg979/vim-visual-multi", branch = "master" },
 	})
 end
