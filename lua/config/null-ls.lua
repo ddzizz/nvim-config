@@ -8,6 +8,7 @@ null_ls.setup({
 		null_ls.builtins.formatting.goimports_reviser,
 		null_ls.builtins.formatting.golines,
 		null_ls.builtins.formatting.csharpier,
+		null_ls.builtins.formatting.prettier,
 		null_ls.builtins.diagnostics.eslint,
 		null_ls.builtins.completion.spell,
 		-- require("none-ls.diagnostics.eslint"),

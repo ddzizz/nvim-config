@@ -41,7 +41,7 @@ if not vim.g.vscode then
 				})
 
 				transparent.clear_prefix("BufferLine")
-				transparent.clear_prefix("lualine")
+				-- transparent.clear_prefix("lualine")
 				transparent.clear_prefix("Notify")
 
 				-- vim.api.nvim_set_hl(0, 'NotifyBackground', vim.api.nvim_get_hl_by_name('Normal', true))
@@ -544,7 +544,19 @@ if not vim.g.vscode then
 				})
 			end,
 		},
-		"olimorris/onedarkpro.nvim",
+		{
+			"navarasu/onedark.nvim",
+			config = function()
+				require("onedark").setup({
+					style = "warmer",
+					transparent = true,
+					lualine = {
+						transparent = true,
+					},
+				})
+			end,
+		},
+		-- "olimorris/onedarkpro.nvim",
 		"AlexvZyl/nordic.nvim",
 		"projekt0n/github-nvim-theme",
 		"shaunsingh/nord.nvim",
