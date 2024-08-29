@@ -425,6 +425,9 @@ if not vim.g.vscode then
 			end,
 		},
 		{
+			"lukas-reineke/lsp-format.nvim",
+		},
+		{
 			"nvimtools/none-ls.nvim",
 			config = function()
 				require("config.null-ls")
