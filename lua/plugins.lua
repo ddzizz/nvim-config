@@ -410,7 +410,7 @@ if not vim.g.vscode then
 			lazy = false,
 			version = false, -- set this if you want to always pull the latest change
 			opts = {
-				debug = true,
+				-- debug = true,
 				-- provider = "claude", -- Recommend using Claude
 				-- claude = {
 				-- 	endpoint = "https://api.gptsapi.net",
@@ -423,7 +423,8 @@ if not vim.g.vscode then
 					wildcard = {
 						-- endpoint = "https://api.anthropic.com",
 						endpoint = "https://api.gptsapi.net/v1/chat/completions",
-						model = "claude-3-5-sonnet-20240620",
+						model = "gpt-4o-2024-08-06",
+						-- model = "claude-3-5-sonnet-20240620",
 						api_key_name = "OPENAI_API_KEY",
 						parse_curl_args = function(opts, code_opts)
 							return {
@@ -434,7 +435,8 @@ if not vim.g.vscode then
 									["Authorization"] = "Bearer sk-XiU91c9c8829eb1cf8055e15d4a391ea1758ea7ed35swfAA",
 								},
 								body = {
-									model = "claude-3-5-sonnet-20240620",
+									-- model = "claude-3-5-sonnet-20240620",
+									model = "gpt-4o-2024-08-06",
 									messages = { -- you can make your own message, but this is very advanced
 										{ role = "system", content = code_opts.system_prompt },
 										{
