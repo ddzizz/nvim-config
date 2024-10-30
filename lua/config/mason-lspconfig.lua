@@ -13,7 +13,7 @@ mason_lspcfg.setup({
 		"rust_analyzer",
 		"svelte",
 		"tailwindcss",
-		"tsserver",
+		"ts_ls",
 		"yamlls",
 		"zls",
 		"csharp_ls",
