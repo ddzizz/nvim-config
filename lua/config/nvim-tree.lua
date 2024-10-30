@@ -35,11 +35,11 @@ require("nvim-tree").setup({
 			return math.floor(vim.opt.columns:get() * WIDTH_RATIO)
 		end
 	},
-	git = {
-		enable = true,
-	},
+	-- git = {
+	-- 	enable = true,
+	-- },
 	filters = {
-		git_ignored = true,
+        dotfiles = true,
 	},
 	-- sync_root_with_cwd = true,
 	-- respect_buf_cwd = true,
