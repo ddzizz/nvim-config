@@ -16,7 +16,6 @@ mason_lspcfg.setup({
 		"ts_ls",
 		"yamlls",
 		"zls",
-		"csharp_ls",
 	},
 })
 
@@ -54,3 +53,4 @@ mason_lspcfg.setup_handlers({
 -- vim.notify = require("noice").notify
 -- vim.lsp.handlers["textDocument/hover"] = require("noice").hover
 -- vim.lsp.handlers["textDocument/signatureHelp"] = require("noice").signature
+
