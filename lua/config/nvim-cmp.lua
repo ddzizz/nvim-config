@@ -38,7 +38,8 @@ cmp.setup({
 		-- { name = 'vsnip' }, -- For vsnip users.
 		-- { name = 'luasnip', option = { show_autosnippets = true } }, -- For luasnip users.
 		-- { name = 'ultisnips' }, -- For ultisnips users.
-		{ name = 'snippy' }, -- For snippy users.
+		-- { name = 'snippy' }, -- For snippy users.
+		{ name = 'codeium' },
 	}, {
 		{ name = 'buffer' },
 		-- { name = 'path' },
