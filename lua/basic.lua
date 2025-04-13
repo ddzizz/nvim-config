@@ -98,3 +98,17 @@ vim.o.guifont = "CaskaydiaCove NF:h13"
 
 -- Neovide
 vim.g.neovide_transparency = 0.75
+
+if vim.g.vscode then
+	local vscode = require("vscode")
+    vim.keymap.set('n', '?', function ()
+      vscode.action('workbench.action.findInFiles', {
+        args = {
+          query = vim.fn.expand('<cword>') or ''
+        }
+      })
+    end, { desc = '[VSCode] Search word under the cursor', noremap = true })
+    vim.keymap.set('v', '?', function ()
+      vscode.action('workbench.action.findInFiles')
+    end, { desc = '[VSCode] Search word under the cursor', noremap = true })
+end
