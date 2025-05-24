@@ -3,40 +3,41 @@ local mason_lspcfg = require("mason-lspconfig")
 mason_lspcfg.setup({
 	ensure_installed = {
 		"lua_ls",
-		"pyright",
-		"bashls",
-		"cssls",
-		"eslint",
-		"gopls",
-		"html",
-		"jsonls",
-		"rust_analyzer",
-		"svelte",
-		"tailwindcss",
-		"ts_ls",
-		"yamlls",
-		"zls",
+		-- "pyright",
+		-- "bashls",
+		-- "cssls",
+		-- "eslint",
+		-- "gopls",
+		-- "html",
+		-- "jsonls",
+		-- "rust_analyzer",
+		-- "svelte",
+		-- "tailwindcss",
+		-- "ts_ls",
+		-- "yamlls",
+		-- "zls",
 	},
+	automatic_enable = true,
 })
 
-local lspcfg = require("lspconfig")
+-- local lspcfg = require("lspconfig")
 
-mason_lspcfg.setup_handlers({
-	function(server_name)
-		lspcfg[server_name].setup({})
-	end,
+-- mason_lspcfg.setup_handlers({
+-- 	function(server_name)
+-- 		lspcfg[server_name].setup({})
+-- 	end,
 	-- Next, you can provide targeted overrides for specific servers.
-	["lua_ls"] = function()
-		lspcfg.lua_ls.setup({
-			settings = {
-				Lua = {
-					diagnostics = {
-						globals = { "vim" },
-					},
-				},
-			},
-		})
-	end,
+	-- ["lua_ls"] = function()
+	-- 	lspcfg.lua_ls.setup({
+	-- 		settings = {
+	-- 			Lua = {
+	-- 				diagnostics = {
+	-- 					globals = { "vim" },
+	-- 				},
+	-- 			},
+	-- 		},
+	-- 	})
+	-- end,
 	-- ["clangd"] = function ()
 	--   lspconfig.clangd.setup {
 	--     cmd = {
@@ -48,7 +49,7 @@ mason_lspcfg.setup_handlers({
 	--     }
 	--   }
 	-- end
-})
+-- })
 
 -- vim.notify = require("noice").notify
 -- vim.lsp.handlers["textDocument/hover"] = require("noice").hover
