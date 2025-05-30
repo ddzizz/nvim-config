@@ -40,8 +40,8 @@ bufferline.setup({
 })
 
 -- bufferline 左右Tab切换
-vim.api.nvim_set_keymap("n", "<C-h>", ":BufferLineCyclePrev<CR>", noremap_n_slient)
-vim.api.nvim_set_keymap("n", "<C-l>", ":BufferLineCycleNext<CR>", noremap_n_slient)
+vim.api.nvim_set_keymap("n", "<S-Tab>", ":BufferLineCyclePrev<CR>", noremap_n_slient)
+vim.api.nvim_set_keymap("n", "<Tab>", ":BufferLineCycleNext<CR>", noremap_n_slient)
 vim.api.nvim_set_keymap('n', '<C-w>', ":BufDel<CR>", noremap_n_slient)
 vim.api.nvim_set_keymap('n', '<leader>bo', ":BufferLineCloseOthers<CR>", noremap_n_slient)
 vim.api.nvim_set_keymap('n', '<leader>bl', ":BufferLineCloseLeft<CR>", noremap_n_slient)
