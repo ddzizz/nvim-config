@@ -1,7 +1,7 @@
 local vim = vim
 
 -- utf8
-vim.g.encoding = "UTF-8"
+vim.g.encoding = "utf-8"
 vim.o.fileencoding = "utf-8"
 -- jkhl 移动时光标周围保留8行
 vim.o.scrolloff = 8
@@ -84,9 +84,35 @@ vim.o.showtabline = 2
 vim.o.showmode = false
 -- 配置剪切板
 vim.opt.clipboard = "unnamedplus"
+-- 设置背景透明
+vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })
+-- 关闭新行自动添加注释符号
+-- vim.opt.formatoptions:remove({'c', 'r', 'o'})
+vim.cmd('autocmd BufEnter * set formatoptions-=cro')
+vim.cmd('autocmd BufEnter * setlocal formatoptions-=cro')
 -- 关闭netrw
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
+--vim.g.loaded_netrw = 1
+--vim.g.loaded_netrwPlugin = 1
+-- netrw总是在当前buffer目录下打开
+vim.api.nvim_create_autocmd("VimEnter", {
+  pattern = "*",
+  callback = function()
+    vim.api.nvim_create_autocmd("BufEnter", {
+      pattern = "*",
+      command = "let g:netrw_keepdir = 0"
+    })
+  end
+})
+-- 设置netrw显示行号
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "netrw",
+  callback = function()
+    vim.opt_local.number = true
+    vim.opt_local.relativenumber = true  -- 可选
+  end,
+})
 
 -- Options
 --set inccommand=split
@@ -96,19 +122,3 @@ vim.g.loaded_netrwPlugin = 1
 -- 字体
 vim.o.guifont = "CaskaydiaCove NF:h13"
 
--- Neovide
-vim.g.neovide_transparency = 0.75
-
-if vim.g.vscode then
-	local vscode = require("vscode")
-    vim.keymap.set('n', '?', function ()
-      vscode.action('workbench.action.findInFiles', {
-        args = {
-          query = vim.fn.expand('<cword>') or ''
-        }
-      })
-    end, { desc = '[VSCode] Search word under the cursor', noremap = true })
-    vim.keymap.set('v', '?', function ()
-      vscode.action('workbench.action.findInFiles')
-    end, { desc = '[VSCode] Search word under the cursor', noremap = true })
-end
