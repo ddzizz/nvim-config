@@ -18,31 +18,44 @@
 --     vim.cmd 'Lex'        -- 再在当前窗口打开
 --   end
 -- end
+function git_commit_with_msg()
+  vim.ui.input({ prompt = 'Commit message: ' }, function(msg)
+    if not msg or msg == '' then return end        -- 用户取消或空内容
+    vim.system({ 'git', 'commit', '-m', msg })     -- 立即提交
+    vim.notify('Committed: ' .. msg, vim.log.levels.INFO)
+  end)
+end
 
 function init_keymaps()
 	local wk = require('which-key')
 	wk.add({
 		-- 帮助
-		{ "<F1>", "<Cmd>lua require'fzf-lua'.help_tags()<CR>", desc = "Open help tags"  },
+		{ "<F1>", "<CMD>lua require'fzf-lua'.help_tags()<CR>", desc = "Open help tags"  },
 
 		-- 文件
 		{ "<leader>f", group = "File" },
-		{ "<leader>fb", "<Cmd>lua require'fzf-lua'.buffers()<CR>", desc = "Open buffers" },
-		{ "<leader>fk", "<Cmd>lua require'fzf-lua'.builtin()<CR>", desc = "Open builtin" },
-		{ "<leader>ff", "<Cmd>lua require'fzf-lua'.files()<CR>", desc = "Open files" },
-		{ "<leader>fm", "<Cmd>lua require'fzf-lua'.marks()<CR>", desc = "Open marks" },
+		{ "<leader>fb", "<CMD>lua require'fzf-lua'.buffers()<CR>", desc = "Open buffers" },
+		{ "<leader>fk", "<CMD>lua require'fzf-lua'.builtin()<CR>", desc = "Open builtin" },
+		{ "<leader>ff", "<CMD>lua require'fzf-lua'.files()<CR>", desc = "Open files" },
+		{ "<leader>fm", "<CMD>lua require'fzf-lua'.marks()<CR>", desc = "Open marks" },
 
 		-- 查找
 		{ "<leader>s", group = "Search" },
-		{ "<leader>sr", "<Cmd>lua require'fzf-lua'.live_grep()<CR>", desc = "Live grep current project" },
-		{ "<leader>sp", "<Cmd>lua require'fzf-lua'.grep_project()<CR>", desc = "Search all project lines" },
-		{ "<leader>sf", "<Cmd>lua require'fzf-lua'.grep_visual()<CR>", desc = "Search visual selection" },
+		{ "<leader>sr", "<CMD>lua require'fzf-lua'.live_grep()<CR>", desc = "Live grep current project" },
+		{ "<leader>sp", "<CMD>lua require'fzf-lua'.grep_project()<CR>", desc = "Search all project lines" },
+		{ "<leader>sf", "<CMD>lua require'fzf-lua'.grep_visual()<CR>", desc = "Search visual selection" },
 
 		-- 文件浏览器
-		{'<C-\\>', "<CMD>Oil<CR>", desc = "Open oil explorer", { silent = true }},
+		{"<C-\\>", "<CMD>Oil<CR>", desc = "Open oil explorer", { silent = true }},
+
+		-- Git
+		{ "<leader>g", group = "Git" },
+		{ "<leader>ga", "<CMD>!git add %<CR>", desc = "Git stage current file" },
+		{ "<leader>gc", git_commit_with_msg, desc = "Git commit with message" },
+		{ "<leader>gp", "<CMD>!git push<CR>", desc = "Git push" },
 
 		-- LazyGit
-        { "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
+        { "<leader>lg", "<CMD>LazyGit<cr>", desc = "LazyGit" },
 	})
 end
 
