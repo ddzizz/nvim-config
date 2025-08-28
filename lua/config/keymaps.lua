@@ -50,6 +50,7 @@ function init_keymaps()
 
 		-- Git
 		{ "<leader>g", group = "Git" },
+		{ "<leader>gs", "<CMD>!git status<CR>", desc = "Git status" },
 		{ "<leader>ga", "<CMD>!git add %<CR>", desc = "Git stage current file" },
 		{ "<leader>gc", git_commit_with_msg, desc = "Git commit with message" },
 		{ "<leader>gp", "<CMD>!git push<CR>", desc = "Git push" },
