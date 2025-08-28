@@ -12,7 +12,7 @@ return {
 		-- debounce = 600, -- Increase to reduce costs and avoid rate limits
 		provider_options = {
 			openai_compatible = {
-				api_key = function() return '5f314032-abcb-4969-9c40-620245221b78' end,
+				api_key = 'KIMI_V2_API_KEY',
 				end_point = 'https://ark.cn-beijing.volces.com/api/v3/chat/completions',
 				model = 'ep-20250827141525-6hp5x',
 				name = 'Volcengine',
