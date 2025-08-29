@@ -26,6 +26,45 @@ function git_commit_with_msg()
   end)
 end
 
+function git_add_cursor_or_buffer()
+  local oil_ok, oil = pcall(require, "oil")
+  local path
+
+  -- 1. 取目标路径
+  if oil_ok and vim.bo.filetype == "oil" then
+    local entry = oil.get_cursor_entry()
+    if not entry then
+      vim.schedule(function()
+        vim.notify("No entry selected in oil", vim.log.levels.WARN)
+      end)
+      return
+    end
+    path = vim.fs.joinpath(oil.get_current_dir(), entry.name)
+  else
+    path = vim.api.nvim_buf_get_name(0)
+  end
+
+  if path == "" then
+    vim.schedule(function()
+      vim.notify("No file to add", vim.log.levels.WARN)
+    end)
+    return
+  end
+
+  -- 2. 异步执行 git add
+  vim.system({ "git", "add", path }, nil, function(obj)
+    local short = vim.fn.fnamemodify(path, ":.")
+    vim.schedule(function()
+      if obj.code == 0 then
+        vim.notify("git add: " .. short, vim.log.levels.INFO)
+      else
+        vim.notify("git add failed: " .. table.concat(obj.stderr or {}, "\n"),
+                   vim.log.levels.ERROR)
+      end
+    end)
+  end)
+end
+
 function init_keymaps()
 	local wk = require('which-key')
 	wk.add({
@@ -51,7 +90,8 @@ function init_keymaps()
 		-- Git
 		{ "<leader>g", group = "Git" },
 		{ "<leader>gs", "<CMD>!git status<CR>", desc = "Git status" },
-		{ "<leader>ga", "<CMD>!git add %<CR>", desc = "Git stage current file" },
+		-- { "<leader>ga", "<CMD>!git add %<CR>", desc = "Git stage current file" },
+		{ "<leader>ga", git_add_cursor_or_buffer, desc = "Git stage cursor file or oil entry" },	
 		{ "<leader>gc", git_commit_with_msg, desc = "Git commit with message" },
 		{ "<leader>gp", "<CMD>!git push<CR>", desc = "Git push" },
 
