@@ -2,10 +2,12 @@ return {
 	'milanglacier/minuet-ai.nvim',
 	dependencies = { { "nvim-lua/plenary.nvim" } },
 	opts = {
+		-- 内置补全，Ctrl-E取消不是ESC
 		lsp = {
 			enabled_ft = { '*' },
 			enabled_auto_trigger_ft = { '*' },
 		},
+
 		provider = 'openai_compatible',
 		-- request_timeout = 2.5,
 		-- throttle = 1500, -- Increase to reduce costs and avoid rate limits
