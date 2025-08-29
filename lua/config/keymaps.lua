@@ -81,8 +81,8 @@ function init_keymaps()
 		-- 查找
 		{ "<leader>s", group = "Search" },
 		{ "<leader>sr", "<CMD>lua require'fzf-lua'.live_grep()<CR>", desc = "Live grep current project" },
-		{ "<leader>sp", "<CMD>lua require'fzf-lua'.grep_project()<CR>", desc = "Search all project lines" },
-		{ "<leader>sf", "<CMD>lua require'fzf-lua'.grep_visual()<CR>", desc = "Search visual selection" },
+		{ "<leader>sf", "<CMD>lua require'fzf-lua'.grep_project()<CR>", desc = "Search all project lines" },
+		{ "<leader>ss", "<CMD>lua require'fzf-lua'.grep_visual()<CR>", desc = "Search visual selection" },
 
 		-- 文件浏览器
 		{"<C-\\>", "<CMD>Oil<CR>", desc = "Open oil explorer", { silent = true }},
@@ -90,7 +90,6 @@ function init_keymaps()
 		-- Git
 		{ "<leader>g", group = "Git" },
 		{ "<leader>gs", "<CMD>!git status<CR>", desc = "Git status" },
-		-- { "<leader>ga", "<CMD>!git add %<CR>", desc = "Git stage current file" },
 		{ "<leader>ga", git_add_cursor_or_buffer, desc = "Git stage cursor file or oil entry" },	
 		{ "<leader>gc", git_commit_with_msg, desc = "Git commit with message" },
 		{ "<leader>gp", "<CMD>!git push<CR>", desc = "Git push" },
