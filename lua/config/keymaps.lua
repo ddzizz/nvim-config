@@ -93,9 +93,6 @@ function init_keymaps()
 		{ "<leader>ga", git_add_cursor_or_buffer, desc = "Git stage cursor file or oil entry" },	
 		{ "<leader>gc", git_commit_with_msg, desc = "Git commit with message" },
 		{ "<leader>gp", "<CMD>!git push<CR>", desc = "Git push" },
-
-		-- LazyGit
-        { "<leader>lg", "<CMD>LazyGit<cr>", desc = "LazyGit" },
 	})
 end
 

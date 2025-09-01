@@ -12,12 +12,14 @@ return {
 		-- request_timeout = 2.5,
 		-- throttle = 1500, -- Increase to reduce costs and avoid rate limits
 		-- debounce = 600, -- Increase to reduce costs and avoid rate limits
+
+		-- 月之暗面
 		provider_options = {
 			openai_compatible = {
-				api_key = 'KIMI_V2_API_KEY',
-				end_point = 'https://ark.cn-beijing.volces.com/api/v3/chat/completions',
-				model = 'ep-20250827141525-6hp5x',
-				name = 'Volcengine',
+				api_key = 'MOON_V2_API_KEY',
+				end_point = 'https://api.moonshot.cn/v1/chat/completions',
+				model = 'kimi-k2-0711-preview',
+				name = 'Moonshot',
 				stream = true,
 				optional = {
 					max_tokens = 56,
@@ -29,17 +31,25 @@ return {
 				},
 			},
 		},
+		
+		-- 火山引擎
+		-- provider_options = {
+		-- 	openai_compatible = {
+		-- 		api_key = 'VOLC_V2_API_KEY',
+		-- 		end_point = 'https://ark.cn-beijing.volces.com/api/v3/chat/completions',
+		-- 		model = 'ep-20250827141525-6hp5x',
+		-- 		name = 'Volcengine',
+		-- 		stream = true,
+		-- 		optional = {
+		-- 			max_tokens = 56,
+		-- 			top_p = 0.9,
+		-- 			provider = {
+		-- 				-- Prioritize throughput for faster completion
+		-- 				sort = 'throughput',
+		-- 			},
+		-- 		},
+		-- 	},
+		-- },
 	},
 
-	-- config = function()
-	--     require('minuet').setup {
-	--         -- Your configuration options here
-	--     }
-	-- end,
-    -- { 'nvim-lua/plenary.nvim' },
-    -- optional, if you are using virtual-text frontend, nvim-cmp is not
-    -- required.
-    -- { 'hrsh7th/nvim-cmp' },
-    -- optional, if you are using virtual-text frontend, blink is not required.
-    -- { 'Saghen/blink.cmp' },
 }
